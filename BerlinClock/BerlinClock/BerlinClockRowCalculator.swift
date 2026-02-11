@@ -5,9 +5,9 @@ struct BerlinClockRowCalculator {
     func secondsLamp(_ seconds: Int) -> BerlinClockLampsState {
         switch seconds % 2 {
         case 0:
-            return .ON
+            return .on
         default:
-            return .OFF
+            return .off
         }
     }
 }
