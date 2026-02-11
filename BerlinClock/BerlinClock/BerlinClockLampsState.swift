@@ -12,4 +12,12 @@ extension BerlinClockLampsState {
         case .off: return false
         }
     }
+    
+    var lampColor: BerlinClockLampColor {
+        switch self {
+        case .on(let color),
+                .off(let color):
+            return color
+        }
+    }
 }
