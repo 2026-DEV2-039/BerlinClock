@@ -5,3 +5,11 @@ enum BerlinClockLampsState: Equatable, Sendable {
     case off(BerlinClockLampColor)
 }
 
+extension BerlinClockLampsState {
+    var isOn: Bool {
+        switch self {
+        case .on: return true
+        case .off: return false
+        }
+    }
+}

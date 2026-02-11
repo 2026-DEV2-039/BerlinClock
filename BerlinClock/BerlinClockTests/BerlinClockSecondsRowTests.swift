@@ -15,7 +15,7 @@ struct BerlinClockSecondsRowTests {
         #expect(result == .on(.yellowColor))
     }
     
-    @Test("Seconds lamp is ON for even seconds (parameterized)", arguments: evenSeconds)
+    @Test("Test Seconds lamp is ON for even seconds (parameterized)", arguments: evenSeconds)
     func secondsLamp_isOn_whenSecondsIsEvenWithArgs(seconds: Int) {
         let calculator = BerlinClockRowCalculator()
         let result = calculator.secondsLamp(seconds)
@@ -35,5 +35,11 @@ struct BerlinClockSecondsRowTests {
         let calculator = BerlinClockRowCalculator()
         let result = calculator.secondsLamp(seconds)
         #expect(result == .off(.defaultColor))
+    }
+    
+    @Test("Test isOn returns true when lamp state is .on")
+    func isOn_returnsTrue_whenStateIsOn() {
+        let state = BerlinClockLampsState.on(.yellowColor)
+        #expect(state.isOn == true)
     }
 }
