@@ -12,7 +12,7 @@ struct BerlinClockSecondsRowTests {
     func secondsLamp_isOn_whenSecondsIsEven() {
         let calculator = BerlinClockRowCalculator()
         let result = calculator.secondsLamp(0)
-        #expect(result == .on)
+        #expect(result == .on(.yellowColor))
     }
     
     @Test("Seconds lamp is ON for even seconds (parameterized)", arguments: evenSeconds)
@@ -20,20 +20,20 @@ struct BerlinClockSecondsRowTests {
         let calculator = BerlinClockRowCalculator()
         let result = calculator.secondsLamp(seconds)
         
-        #expect(result == .on)
+        #expect(result == .on(.yellowColor))
     }
     
     @Test("Test seconds lamp is off when second is odd")
     func secondsLamp_isOff_whenSecondsIsOdd() {
         let calculator = BerlinClockRowCalculator()
         let result = calculator.secondsLamp(1)
-        #expect(result == .off)
+        #expect(result == .off(.defaultColor))
     }
     
     @Test("Seconds lamp is off for odd seconds (parameterized)", arguments: oddSeconds)
     func secondsLamp_isOn_whenSecondsIsOddWithArgs(seconds: Int) {
         let calculator = BerlinClockRowCalculator()
         let result = calculator.secondsLamp(seconds)
-        #expect(result == .off)
+        #expect(result == .off(.defaultColor))
     }
 }

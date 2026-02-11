@@ -1,6 +1,7 @@
 import Foundation
 
 enum BerlinClockLampsState: Equatable, Sendable {
-    case on
-    case off
+    case on(BerlinClockLampColor)
+    case off(BerlinClockLampColor)
 }
+

@@ -1,5 +1,6 @@
 import Foundation
 
 enum BerlinClockLampColor {
-    case yellow
+    case yellowColor
+    case defaultColor
 }
