@@ -20,4 +20,11 @@ struct BerlinClockSecondsRowTests {
         
         #expect(result == "ON")
     }
+    
+    @Test("Test seconds lamp is off when second is odd")
+    func secondsLamp_isOff_whenSecondsIsOdd() {
+        let calculator = BerlinClockRowCalculator()
+        let result = calculator.secondsLamp(1)
+        #expect(result == "OFF")
+    }
 }

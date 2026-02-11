@@ -7,7 +7,7 @@ struct BerlinClockRowCalculator {
         case 0:
             return "ON"
         default:
-            return "NA"
+            return "OFF"
         }
     }
 }
