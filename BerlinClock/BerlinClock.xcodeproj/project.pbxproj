@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXContainerItemProxy section */
-		0A90A7872F3C6D9C00A34133 /* PBXContainerItemProxy */ = {
+		0AAFDF2F2F3CA4F400842C51 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0A90A7712F3C6D9B00A34133 /* Project object */;
 			proxyType = 1;
@@ -18,12 +18,12 @@
 
 /* Begin PBXFileReference section */
 		0A90A7792F3C6D9B00A34133 /* BerlinClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BerlinClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A90A7862F3C6D9C00A34133 /* BerlinClockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BerlinClockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0AAFDF2B2F3CA4F400842C51 /* BerlinClockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BerlinClockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		0A90A77B2F3C6D9B00A34133 /* BerlinClock */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BerlinClock; sourceTree = "<group>"; };
-		0A90A7892F3C6D9C00A34133 /* BerlinClockTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BerlinClockTests; sourceTree = "<group>"; };
+		0AAFDF2C2F3CA4F400842C51 /* BerlinClockTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BerlinClockTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,7 +34,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0A90A7832F3C6D9C00A34133 /* Frameworks */ = {
+		0AAFDF282F3CA4F400842C51 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -48,7 +48,7 @@
 			isa = PBXGroup;
 			children = (
 				0A90A77B2F3C6D9B00A34133 /* BerlinClock */,
-				0A90A7892F3C6D9C00A34133 /* BerlinClockTests */,
+				0AAFDF2C2F3CA4F400842C51 /* BerlinClockTests */,
 				0A90A77A2F3C6D9B00A34133 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -57,7 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				0A90A7792F3C6D9B00A34133 /* BerlinClock.app */,
-				0A90A7862F3C6D9C00A34133 /* BerlinClockTests.xctest */,
+				0AAFDF2B2F3CA4F400842C51 /* BerlinClockTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -87,27 +87,27 @@
 			productReference = 0A90A7792F3C6D9B00A34133 /* BerlinClock.app */;
 			productType = "com.apple.product-type.application";
 		};
-		0A90A7852F3C6D9C00A34133 /* BerlinClockTests */ = {
+		0AAFDF2A2F3CA4F400842C51 /* BerlinClockTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0A90A79D2F3C6D9D00A34133 /* Build configuration list for PBXNativeTarget "BerlinClockTests" */;
+			buildConfigurationList = 0AAFDF312F3CA4F400842C51 /* Build configuration list for PBXNativeTarget "BerlinClockTests" */;
 			buildPhases = (
-				0A90A7822F3C6D9C00A34133 /* Sources */,
-				0A90A7832F3C6D9C00A34133 /* Frameworks */,
-				0A90A7842F3C6D9C00A34133 /* Resources */,
+				0AAFDF272F3CA4F400842C51 /* Sources */,
+				0AAFDF282F3CA4F400842C51 /* Frameworks */,
+				0AAFDF292F3CA4F400842C51 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				0A90A7882F3C6D9C00A34133 /* PBXTargetDependency */,
+				0AAFDF302F3CA4F400842C51 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				0A90A7892F3C6D9C00A34133 /* BerlinClockTests */,
+				0AAFDF2C2F3CA4F400842C51 /* BerlinClockTests */,
 			);
 			name = BerlinClockTests;
 			packageProductDependencies = (
 			);
 			productName = BerlinClockTests;
-			productReference = 0A90A7862F3C6D9C00A34133 /* BerlinClockTests.xctest */;
+			productReference = 0AAFDF2B2F3CA4F400842C51 /* BerlinClockTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -123,7 +123,7 @@
 					0A90A7782F3C6D9B00A34133 = {
 						CreatedOnToolsVersion = 26.2;
 					};
-					0A90A7852F3C6D9C00A34133 = {
+					0AAFDF2A2F3CA4F400842C51 = {
 						CreatedOnToolsVersion = 26.2;
 						TestTargetID = 0A90A7782F3C6D9B00A34133;
 					};
@@ -144,7 +144,7 @@
 			projectRoot = "";
 			targets = (
 				0A90A7782F3C6D9B00A34133 /* BerlinClock */,
-				0A90A7852F3C6D9C00A34133 /* BerlinClockTests */,
+				0AAFDF2A2F3CA4F400842C51 /* BerlinClockTests */,
 			);
 		};
 /* End PBXProject section */
@@ -157,7 +157,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0A90A7842F3C6D9C00A34133 /* Resources */ = {
+		0AAFDF292F3CA4F400842C51 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -174,7 +174,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0A90A7822F3C6D9C00A34133 /* Sources */ = {
+		0AAFDF272F3CA4F400842C51 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -184,10 +184,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0A90A7882F3C6D9C00A34133 /* PBXTargetDependency */ = {
+		0AAFDF302F3CA4F400842C51 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0A90A7782F3C6D9B00A34133 /* BerlinClock */;
-			targetProxy = 0A90A7872F3C6D9C00A34133 /* PBXContainerItemProxy */;
+			targetProxy = 0AAFDF2F2F3CA4F400842C51 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -383,52 +383,42 @@
 			};
 			name = Release;
 		};
-		0A90A79E2F3C6D9D00A34133 /* Debug */ = {
+		0AAFDF322F3CA4F400842C51 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.BerlinClockTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BerlinClock.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BerlinClock";
 			};
 			name = Debug;
 		};
-		0A90A79F2F3C6D9D00A34133 /* Release */ = {
+		0AAFDF332F3CA4F400842C51 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.BerlinClockTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BerlinClock.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BerlinClock";
 			};
 			name = Release;
@@ -454,11 +444,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0A90A79D2F3C6D9D00A34133 /* Build configuration list for PBXNativeTarget "BerlinClockTests" */ = {
+		0AAFDF312F3CA4F400842C51 /* Build configuration list for PBXNativeTarget "BerlinClockTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0A90A79E2F3C6D9D00A34133 /* Debug */,
-				0A90A79F2F3C6D9D00A34133 /* Release */,
+				0AAFDF322F3CA4F400842C51 /* Debug */,
+				0AAFDF332F3CA4F400842C51 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
