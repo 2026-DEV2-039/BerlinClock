@@ -42,4 +42,10 @@ struct BerlinClockSecondsRowTests {
         let state = BerlinClockLampsState.on(.yellowColor)
         #expect(state.isOn == true)
     }
+    
+    @Test("isOn returns false when lamp state is .off")
+    func isOn_returnsFalse_whenStateIsOff() {
+        let state = BerlinClockLampsState.off(.defaultColor)
+        #expect(state.isOn == false)
+    }
 }
