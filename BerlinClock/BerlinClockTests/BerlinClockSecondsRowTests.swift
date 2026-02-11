@@ -5,7 +5,8 @@ import Testing
 struct BerlinClockSecondsRowTests {
     // Helper Arguments
     private static let evenSeconds = Array(stride(from: 0, through: 59, by: 2))
-    
+    private static let oddSeconds = Array(stride(from: 1, through: 59, by: 2))
+
     @Test("Test seconds lamp is on when seconds is even")
     func secondsLamp_isOn_whenSecondsIsEven() {
         let calculator = BerlinClockRowCalculator()
@@ -25,6 +26,13 @@ struct BerlinClockSecondsRowTests {
     func secondsLamp_isOff_whenSecondsIsOdd() {
         let calculator = BerlinClockRowCalculator()
         let result = calculator.secondsLamp(1)
+        #expect(result == "OFF")
+    }
+    
+    @Test("Seconds lamp is off for odd seconds (parameterized)", arguments: BerlinClockSecondsRowTests.oddSeconds)
+    func secondsLamp_isOn_whenSecondsIsOddWithArgs(seconds: Int) {
+        let calculator = BerlinClockRowCalculator()
+        let result = calculator.secondsLamp(seconds)
         #expect(result == "OFF")
     }
 }
