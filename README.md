@@ -7,8 +7,6 @@ Instead of displaying hours, minutes, and seconds as numbers, it visualizes time
 
 This project focuses on **clean logic, testability, and separation of concerns**, rather than UI complexity.
 
---------------------------------------------------------------------------------------------------
-
 ## 🕰️ Berlin Clock Overview
 
 The Berlin Clock (German: Mengenlehreuhr) is a unique clock design that tells time using illuminated colored lamps instead of traditional hands or digital numbers.
@@ -44,8 +42,6 @@ The Berlin Clock consists of **4 main rows of lamps**, along with a blinking sec
 - 4 yellow lamps
 - Each lamp represents **1 minute**
 
---------------------------------------------------------------------------------------------------
-
 ## 🎯 Objective of the Kata
 
 The goal of this kata is to:
@@ -60,8 +56,6 @@ This kata is commonly used to practice:
 - Incremental design
 - Refactoring
 - Domain modeling
-
---------------------------------------------------------------------------------------------------
 
 ## Example
 
@@ -81,8 +75,6 @@ Legend:
 - Y = Yellow
 - O = Off
 
---------------------------------------------------------------------------------------------------
-
 ## Tech Stack
 
 - Swift 5
@@ -90,8 +82,6 @@ Legend:
 - Swift Testing framework
 - iOS 17+
 - Xcode 15.0+
-
---------------------------------------------------------------------------------------------------
 
 ## Getting Started
 
@@ -107,22 +97,16 @@ Legend:
 git clone https://github.com/2026-DEV2-039/BerlinClock.git
 cd BerlinClock
 
---------------------------------------------------------------------------------------------------
-
 ### Open the Project
 
 open BerlinClock.xcodeproj
 
 Or open via Xcode → File → Open.
 
---------------------------------------------------------------------------------------------------
-
 ### Run the App
 
 - Select an iOS simulator
 - Press ⌘ + R
-
---------------------------------------------------------------------------------------------------
 
 ### Run Tests
 
