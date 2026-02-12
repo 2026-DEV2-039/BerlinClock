@@ -6,7 +6,7 @@ import Testing
 struct BerlinClockOneMinRowTests {
 
     @Test("Test bottom minute row is all off when minute is zero")
-    func bottomMinuteRow_isAllOff_whenMinutesIsZero() {
+    func oneMinuteRow_isAllOff_whenMinutesIsZero() {
         let calculator = BerlinClockRowCalculator()
         let result = calculator.oneMinutesLamps(0)
         #expect(result.allSatisfy { $0 == .off(.defaultColor) })
