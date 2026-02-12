@@ -25,8 +25,10 @@ struct BerlinClockRowCalculator {
     //MARK: Minutes Row Methods
     func fiveMinutesLamps(_ minutes: Int) -> [BerlinClockLampsState] {
         let onCount = minutes / 5
-        return fillLampFromLeft(rowType: .fiveMinsRowCase, onCount: onCount) { _ in
-            return .on(.yellowColor)
+        return fillLampFromLeft(rowType: .fiveMinsRowCase, onCount: onCount) { index in
+            let isQuarter = (index + 1).isMultiple(of: 3)
+            let color : BerlinClockLampColor  = isQuarter ? .redColor : .yellowColor
+            return .on(color)
         }
     }
 }
