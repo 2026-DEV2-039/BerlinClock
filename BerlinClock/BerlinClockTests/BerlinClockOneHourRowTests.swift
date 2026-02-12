@@ -53,6 +53,14 @@ struct BerlinClockOneHourRowTests {
         let expected = expectedOneHoursRows(for: 5)
         #expect(result == expected)
     }
+    
+    @Test("Test one hour row uses remainder logic for 23 hours")
+    func oneHourRow_usesRemainder_forTwentyThreeHours() {
+        let calculator = BerlinClockRowCalculator()
+        let result = calculator.oneHourLamps(23)
+        let expected = expectedOneHoursRows(for: 23)
+        #expect(result == expected)
+    }
 }
 
 // MARK: Helper function for test case
