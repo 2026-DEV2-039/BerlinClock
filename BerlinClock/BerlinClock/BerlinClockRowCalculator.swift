@@ -56,6 +56,8 @@ struct BerlinClockRowCalculator {
             return [.on(.redColor), .off(.defaultColor), .off(.defaultColor), .off(.defaultColor)]
         } else if hours == 2 {
             return [.on(.redColor), .on(.redColor), .off(.defaultColor), .off(.defaultColor)]
+        } else if hours == 3 {
+            return [.on(.redColor), .on(.redColor), .on(.redColor), .off(.defaultColor)]
         }
         return [.off(.defaultColor), .off(.defaultColor), .off(.defaultColor), .off(.defaultColor)]
     }
