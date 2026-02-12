@@ -3,11 +3,13 @@ import Foundation
 private enum BerlinClockRowType {
     case fiveMinsRowCase
     case oneMinsRowCase
+    case fiveHoursRowCase
 
     var lampCount: Int {
         switch self {
-            case .fiveMinsRowCase: return 11
+        case .fiveMinsRowCase: return 11
         case .oneMinsRowCase: return 4
+        case .fiveHoursRowCase: return 4
         }
     }
 }
@@ -43,14 +45,10 @@ struct BerlinClockRowCalculator {
     
     //MARK: Hours Row Methods
     func fiveHoursLamps(_ hours: Int) -> [BerlinClockLampsState] {
-        if hours == 5 {
-            return [.on(.redColor), .off(.defaultColor), .off(.defaultColor), .off(.defaultColor)]
-        } else if hours == 10 {
-            return [.on(.redColor), .on(.redColor), .off(.defaultColor), .off(.defaultColor)]
-        } else if hours == 15 {
-            return [.on(.redColor), .on(.redColor), .on(.redColor), .off(.defaultColor)]
+        let onCount = hours / 5
+        return fillLampFromLeft(rowType: .fiveHoursRowCase, onCount: onCount) { _ in
+                .on(.redColor)
         }
-        return [BerlinClockLampsState](repeating: .off(.defaultColor), count: 4)
     }
 }
 
