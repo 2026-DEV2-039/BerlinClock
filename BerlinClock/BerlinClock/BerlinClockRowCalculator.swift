@@ -27,6 +27,18 @@ struct BerlinClockRowCalculator {
                     .off(.defaultColor),
                     .off(.defaultColor),
                     .off(.defaultColor)]
+        } else if onCount == 2 {
+            return [.off(.yellowColor),
+                    .off(.yellowColor),
+                    .off(.defaultColor),
+                    .off(.defaultColor),
+                    .off(.defaultColor),
+                    .off(.defaultColor),
+                    .off(.defaultColor),
+                    .off(.defaultColor),
+                    .off(.defaultColor),
+                    .off(.defaultColor),
+                    .off(.defaultColor)]
         }
         return [.off(.defaultColor),
                 .off(.defaultColor),

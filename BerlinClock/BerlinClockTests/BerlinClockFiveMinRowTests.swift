@@ -38,4 +38,21 @@ struct BerlinClockFiveMinRowTests {
                            .off(.defaultColor),
                            .off(.defaultColor)])
     }
+    
+    @Test("Test five minute row turns on two Lamp for ten minutes")
+    func fiveMinuteRow_turnsOnTwoLamp_forFiveMinutes() {
+        let calculator = BerlinClockRowCalculator()
+        let result = calculator.fiveMinutesLamps(10)
+        #expect(result == [.off(.yellowColor),
+                           .off(.yellowColor),
+                           .off(.defaultColor),
+                           .off(.defaultColor),
+                           .off(.defaultColor),
+                           .off(.defaultColor),
+                           .off(.defaultColor),
+                           .off(.defaultColor),
+                           .off(.defaultColor),
+                           .off(.defaultColor),
+                           .off(.defaultColor)])
+    }
 }
