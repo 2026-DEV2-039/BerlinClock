@@ -12,15 +12,23 @@ struct BerlinClockFiveHoursRowTests {
         let expected = expectedfiveHoursRow(for: 0)
         #expect(result == expected)
     }
+    
+    @Test("Test five hour row turns on one lamp for five hours")
+    func fiveHourRow_turnsOnOneLamp_forFiveHours() {
+        let calculator = BerlinClockRowCalculator()
+        let result = calculator.fiveHoursLamps(5)
+        let expected = expectedfiveHoursRow(for: 5)
+        #expect(result == expected)
+    }
 }
 
 // MARK: Helper function for test case
 extension BerlinClockFiveHoursRowTests {
     func expectedfiveHoursRow(for hours: Int) -> [BerlinClockLampsState] {
-        let onCount = 0
+        let onCount = hours / 5
         return (1...4).map { index in
             if index <= onCount {
-                let color: BerlinClockLampColor =  .yellowColor
+                let color: BerlinClockLampColor =  .redColor
                 return .on(color)
             } else {
                 return .off(.defaultColor)

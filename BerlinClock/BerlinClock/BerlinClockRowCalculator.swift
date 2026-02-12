@@ -43,6 +43,9 @@ struct BerlinClockRowCalculator {
     
     //MARK: Hours Row Methods
     func fiveHoursLamps(_ hours: Int) -> [BerlinClockLampsState] {
+        if hours == 5 {
+            return [.on(.redColor), .off(.defaultColor), .off(.defaultColor), .off(.defaultColor)]
+        }
         return [BerlinClockLampsState](repeating: .off(.defaultColor), count: 4)
     }
 }
