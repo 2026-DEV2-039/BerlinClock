@@ -51,4 +51,17 @@ struct BerlinClockOneHourRowTests {
             .off(.defaultColor)
         ])
     }
+    
+    @Test("Test one hour row four lamps are on when hours is 4")
+    func oneHourRow_turnsOnFourLamps_forFourHours() {
+        let calculator = BerlinClockRowCalculator()
+        let result = calculator.oneHourLamps(4)
+        
+        #expect(result == [
+            .on(.redColor),
+            .on(.redColor),
+            .on(.redColor),
+            .on(.redColor)
+        ])
+    }
 }
