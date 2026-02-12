@@ -45,6 +45,14 @@ struct BerlinClockOneHourRowTests {
         let expected = expectedOneHoursRows(for: 4)
         #expect(result == expected)
     }
+    
+    @Test("Test one hour row is all off when hours is multiple of 5")
+    func oneHourRow_isAllOff_whenHoursIsMultipleOfFive() {
+        let calculator = BerlinClockRowCalculator()
+        let result = calculator.oneHourLamps(5)
+        let expected = expectedOneHoursRows(for: 5)
+        #expect(result == expected)
+    }
 }
 
 // MARK: Helper function for test case
