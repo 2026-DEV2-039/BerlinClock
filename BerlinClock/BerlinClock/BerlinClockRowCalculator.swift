@@ -31,6 +31,10 @@ struct BerlinClockRowCalculator {
             return .on(color)
         }
     }
+    
+    func oneMinutesLamps(_ minutes: Int) -> [BerlinClockLampsState] {
+        return [.off(.defaultColor), .off(.defaultColor), .off(.defaultColor), .off(.defaultColor)]
+    }
 }
 
 // MARK: Helper Functions
