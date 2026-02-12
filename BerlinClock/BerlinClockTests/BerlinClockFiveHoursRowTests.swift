@@ -36,6 +36,15 @@ struct BerlinClockFiveHoursRowTests {
         let expected = expectedfiveHoursRow(for: 15)
         #expect(result == expected)
     }
+    
+    @Test("Test five hour row lamps for parameterized hours",
+          arguments: [0, 5, 10, 15, 20, 23])
+    func fiveHourRow_isCorrect_forParameterizedHours(hours: Int) {
+        let calculator = BerlinClockRowCalculator()
+        let result = calculator.fiveHoursLamps(hours)
+        let expected = expectedfiveHoursRow(for: hours)
+        #expect(result == expected)
+    }
 }
 
 // MARK: Helper function for test case
