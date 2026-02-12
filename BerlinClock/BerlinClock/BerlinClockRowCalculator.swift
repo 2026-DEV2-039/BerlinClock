@@ -1,5 +1,15 @@
 import Foundation
 
+private enum BerlinClockRowType {
+    case fiveMinsRowCase
+    
+    var lampCount: Int {
+        switch self {
+            case .fiveMinsRowCase: return 11
+        }
+    }
+}
+
 struct BerlinClockRowCalculator {
     
     //MARK: Seconds Row Methods
@@ -15,41 +25,19 @@ struct BerlinClockRowCalculator {
     //MARK: Minutes Row Methods
     func fiveMinutesLamps(_ minutes: Int) -> [BerlinClockLampsState] {
         let onCount = minutes / 5
-        if onCount == 1 {
-            return [.off(.yellowColor),
-                    .off(.defaultColor),
-                    .off(.defaultColor),
-                    .off(.defaultColor),
-                    .off(.defaultColor),
-                    .off(.defaultColor),
-                    .off(.defaultColor),
-                    .off(.defaultColor),
-                    .off(.defaultColor),
-                    .off(.defaultColor),
-                    .off(.defaultColor)]
-        } else if onCount == 2 {
-            return [.off(.yellowColor),
-                    .off(.yellowColor),
-                    .off(.defaultColor),
-                    .off(.defaultColor),
-                    .off(.defaultColor),
-                    .off(.defaultColor),
-                    .off(.defaultColor),
-                    .off(.defaultColor),
-                    .off(.defaultColor),
-                    .off(.defaultColor),
-                    .off(.defaultColor)]
+        return fillLampFromLeft(rowType: .fiveMinsRowCase, onCount: onCount) { _ in
+            return .on(.yellowColor)
         }
-        return [.off(.defaultColor),
-                .off(.defaultColor),
-                .off(.defaultColor),
-                .off(.defaultColor),
-                .off(.defaultColor),
-                .off(.defaultColor),
-                .off(.defaultColor),
-                .off(.defaultColor),
-                .off(.defaultColor),
-                .off(.defaultColor),
-                .off(.defaultColor)]
+    }
+}
+
+// MARK: Helper Functions
+extension BerlinClockRowCalculator {
+    private func fillLampFromLeft(rowType: BerlinClockRowType,
+                                  onCount: Int,
+                                  onLampAt onLamp: (Int) -> BerlinClockLampsState) -> [BerlinClockLampsState] {
+        (0..<rowType.lampCount).map { index in
+            index < onCount ? onLamp(index) : .off(.defaultColor)
+        }
     }
 }

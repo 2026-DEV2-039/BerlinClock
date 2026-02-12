@@ -9,50 +9,39 @@ struct BerlinClockFiveMinRowTests {
     func fiveMinuteRow_isAllOff_whenMinutesIsZero() {
         let calculator = BerlinClockRowCalculator()
         let result = calculator.fiveMinutesLamps(0)
-        #expect(result == [.off(.defaultColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor)])
+        let expected = expectedfiveMinuteRow(for: 0)
+        #expect(result == expected)
     }
     
     @Test("Test five minute row turns on one Lamp for five minutes")
     func fiveMinuteRow_turnsOnOneLamp_forFiveMinutes() {
         let calculator = BerlinClockRowCalculator()
         let result = calculator.fiveMinutesLamps(5)
-        #expect(result == [.off(.yellowColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor)])
+        let expected = expectedfiveMinuteRow(for: 5)
+        #expect(result == expected)
     }
     
     @Test("Test five minute row turns on two Lamp for ten minutes")
     func fiveMinuteRow_turnsOnTwoLamp_forFiveMinutes() {
         let calculator = BerlinClockRowCalculator()
         let result = calculator.fiveMinutesLamps(10)
-        #expect(result == [.off(.yellowColor),
-                           .off(.yellowColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor),
-                           .off(.defaultColor)])
+        let expected = expectedfiveMinuteRow(for: 10)
+        #expect(result == expected)
+    }
+}
+
+// MARK: Helper function for test case
+extension BerlinClockFiveMinRowTests {
+    
+    func expectedfiveMinuteRow(for minutes: Int) -> [BerlinClockLampsState] {
+        let onCount = minutes / 5
+        return (1...11).map { index in
+            if index <= onCount {
+                let color: BerlinClockLampColor = .yellowColor
+                return .on(color)
+            } else {
+                return .off(.defaultColor)
+            }
+        }
     }
 }
