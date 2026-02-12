@@ -28,6 +28,14 @@ struct BerlinClockFiveHoursRowTests {
         let expected = expectedfiveHoursRow(for: 10)
         #expect(result == expected)
     }
+    
+    @Test("Test five hour row turns on three lamps for fifteen hours")
+    func fiveHourRow_turnsOnThreeLamps_forFifteenHours() {
+        let calculator = BerlinClockRowCalculator()
+        let result = calculator.fiveHoursLamps(15)
+        let expected = expectedfiveHoursRow(for: 15)
+        #expect(result == expected)
+    }
 }
 
 // MARK: Helper function for test case
