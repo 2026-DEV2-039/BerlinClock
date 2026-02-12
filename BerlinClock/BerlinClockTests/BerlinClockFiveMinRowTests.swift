@@ -36,6 +36,14 @@ struct BerlinClockFiveMinRowTests {
         let expected = expectedfiveMinuteRow(for: 15)
         #expect(result == expected)
     }
+    
+    @Test("Test minutes lamp is ON for minutes (parameterized)", arguments: [20, 25, 30, 35, 40, 45, 50, 55, 60])
+    func fiveMinuteRow_IsLampON_forArgsMinutes(minutes: Int) {
+        let calculator = BerlinClockRowCalculator()
+        let result = calculator.fiveMinutesLamps(minutes)
+        let expected = expectedfiveMinuteRow(for: minutes)
+        #expect(result == expected)
+    }
 }
 
 // MARK: Helper function for test case
