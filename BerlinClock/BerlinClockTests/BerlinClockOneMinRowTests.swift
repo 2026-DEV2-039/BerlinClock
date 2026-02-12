@@ -5,7 +5,7 @@ import Testing
 @MainActor
 struct BerlinClockOneMinRowTests {
 
-    @Test("Test bottom minute row is all off when minute is zero")
+    @Test("Test one minute row is all off when minute is zero")
     func oneMinuteRow_isAllOff_whenMinutesIsZero() {
         let calculator = BerlinClockRowCalculator()
         let result = calculator.oneMinutesLamps(0)

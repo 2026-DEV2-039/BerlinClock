@@ -2,10 +2,12 @@ import Foundation
 
 private enum BerlinClockRowType {
     case fiveMinsRowCase
-    
+    case oneMinsRowCase
+
     var lampCount: Int {
         switch self {
             case .fiveMinsRowCase: return 11
+        case .oneMinsRowCase: return 4
         }
     }
 }
@@ -33,9 +35,9 @@ struct BerlinClockRowCalculator {
     }
     
     func oneMinutesLamps(_ minutes: Int) -> [BerlinClockLampsState] {
-        switch minutes {
-        case 1: return [.on(.yellowColor), .off(.defaultColor), .off(.defaultColor), .off(.defaultColor)]
-        default: return [.off(.defaultColor), .off(.defaultColor), .off(.defaultColor), .off(.defaultColor)]
+        let onCount = minutes % 5
+        return fillLampFromLeft(rowType: .oneMinsRowCase, onCount: onCount) { _ in
+                .on(.yellowColor)
         }
     }
 }
