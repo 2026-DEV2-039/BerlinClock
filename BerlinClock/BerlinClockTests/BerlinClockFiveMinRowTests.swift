@@ -4,7 +4,7 @@ import Testing
 @Suite("BerlinClockFiveMinRow Tests")
 @MainActor
 struct BerlinClockFiveMinRowTests {
-
+    
     @Test("Test five minute row is all of when minute is zero")
     func fiveMinuteRow_isAllOff_whenMinutesIsZero() {
         let calculator = BerlinClockRowCalculator()
@@ -21,5 +21,21 @@ struct BerlinClockFiveMinRowTests {
                            .off(.defaultColor),
                            .off(.defaultColor)])
     }
-
+    
+    @Test("Test five minute row turns on one Lamp for five minutes")
+    func fiveMinuteRow_turnsOnOneLamp_forFiveMinutes() {
+        let calculator = BerlinClockRowCalculator()
+        let result = calculator.fiveMinutesLamps(5)
+        #expect(result == [.off(.yellowColor),
+                           .off(.defaultColor),
+                           .off(.defaultColor),
+                           .off(.defaultColor),
+                           .off(.defaultColor),
+                           .off(.defaultColor),
+                           .off(.defaultColor),
+                           .off(.defaultColor),
+                           .off(.defaultColor),
+                           .off(.defaultColor),
+                           .off(.defaultColor)])
+    }
 }

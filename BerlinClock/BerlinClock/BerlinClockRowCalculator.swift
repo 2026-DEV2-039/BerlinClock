@@ -14,6 +14,20 @@ struct BerlinClockRowCalculator {
     
     //MARK: Minutes Row Methods
     func fiveMinutesLamps(_ minutes: Int) -> [BerlinClockLampsState] {
+        let onCount = minutes / 5
+        if onCount == 1 {
+            return [.off(.yellowColor),
+                    .off(.defaultColor),
+                    .off(.defaultColor),
+                    .off(.defaultColor),
+                    .off(.defaultColor),
+                    .off(.defaultColor),
+                    .off(.defaultColor),
+                    .off(.defaultColor),
+                    .off(.defaultColor),
+                    .off(.defaultColor),
+                    .off(.defaultColor)]
+        }
         return [.off(.defaultColor),
                 .off(.defaultColor),
                 .off(.defaultColor),
