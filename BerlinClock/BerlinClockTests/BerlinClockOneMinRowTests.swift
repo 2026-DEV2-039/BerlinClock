@@ -11,4 +11,11 @@ struct BerlinClockOneMinRowTests {
         let result = calculator.oneMinutesLamps(0)
         #expect(result.allSatisfy { $0 == .off(.defaultColor) })
     }
+    
+    @Test("Test one minute row one lamp is on when hours is 1")
+    func oneMinuteRow_isOneLampOn_whenMinutesIsOne() {
+        let calculator = BerlinClockRowCalculator()
+        let result = calculator.oneMinutesLamps(1)
+        #expect(result == [.on(.yellowColor), .off(.defaultColor), .off(.defaultColor), .off(.defaultColor)])
+    }
 }
