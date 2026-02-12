@@ -4,12 +4,14 @@ private enum BerlinClockRowType {
     case fiveMinsRowCase
     case oneMinsRowCase
     case fiveHoursRowCase
+    case oneHoursRowCase
 
     var lampCount: Int {
         switch self {
         case .fiveMinsRowCase: return 11
         case .oneMinsRowCase: return 4
         case .fiveHoursRowCase: return 4
+        case .oneHoursRowCase: return 4
         }
     }
 }
@@ -52,16 +54,10 @@ struct BerlinClockRowCalculator {
     }
     
     func oneHourLamps(_ hours: Int) -> [BerlinClockLampsState] {
-        if hours == 1 {
-            return [.on(.redColor), .off(.defaultColor), .off(.defaultColor), .off(.defaultColor)]
-        } else if hours == 2 {
-            return [.on(.redColor), .on(.redColor), .off(.defaultColor), .off(.defaultColor)]
-        } else if hours == 3 {
-            return [.on(.redColor), .on(.redColor), .on(.redColor), .off(.defaultColor)]
-        } else if hours == 4 {
-            return [.on(.redColor), .on(.redColor), .on(.redColor), .on(.redColor)]
+        let onCount = hours % 5
+        return fillLampFromLeft(rowType: .oneHoursRowCase, onCount: onCount) { _ in
+                .on(.redColor)
         }
-        return [.off(.defaultColor), .off(.defaultColor), .off(.defaultColor), .off(.defaultColor)]
     }
 }
 
