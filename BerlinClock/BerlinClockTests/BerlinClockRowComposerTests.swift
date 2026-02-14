@@ -33,5 +33,12 @@ struct BerlinClockRowComposerTests {
             Issue.record("Expected seconds lamp ON at 0")
         }
     }
+    
+    @Test("Seconds lamp is OFF at 1 second")
+    func secondsLamp_isOff_atOne() {
+        let calculator = BerlinClockRowCalculator()
+        let result = calculator.allRowLampsState(hours: 0, minutes: 0, seconds: 1)
+        #expect(result.secondsLamp == .off)
+    }
 }
 
