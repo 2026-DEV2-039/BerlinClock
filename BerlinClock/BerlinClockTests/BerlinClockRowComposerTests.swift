@@ -166,6 +166,17 @@ struct BerlinClockRowComposerTests {
             return false
         }.count == 3)
     }
-
+    
+    @Test("Test full clock state at 23:59:59")
+    func fullClock_atMaxTime() {
+        let calculator = BerlinClockRowCalculator()
+        let result = calculator.allRowLampsState(hours: 23, minutes: 59, seconds: 59)
+        
+        #expect(result.secondsLamp == .off)
+        #expect(result.fiveMinsLamps.count == 11)
+        #expect(result.oneMinsLamps.count == 4)
+        #expect(result.fiveHoursLamps.count == 4)
+        #expect(result.oneHoursLamps.count == 4)
+    }
 }
 
