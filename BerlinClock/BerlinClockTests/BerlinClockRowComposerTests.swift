@@ -194,5 +194,16 @@ struct BerlinClockRowComposerTests {
         #expect(state.fiveHoursLamps.allSatisfy { $0 == .off })
         #expect(state.oneHoursLamps.allSatisfy { $0 == .off })
     }
+    
+    @Test("Test seconds toggles ON/OFF")
+    func seconds_toggle() {
+        let converter = BerlinClockRowCalculator()
+        let even = converter.convertDigitalTimeToBerlinClock(digitalTime:
+                                                                DigitalTime(hours: 1, minutes: 1, seconds: 2))
+        let odd = converter.convertDigitalTimeToBerlinClock(digitalTime:
+                                                                DigitalTime(hours: 1, minutes: 1, seconds: 3))
+        #expect(even.secondsLamp != odd.secondsLamp)
+    }
+
 }
 
