@@ -5,7 +5,7 @@ private enum BerlinClockRowType {
     case oneMinsRowCase
     case fiveHoursRowCase
     case oneHoursRowCase
-
+    
     var lampCount: Int {
         switch self {
         case .fiveMinsRowCase: return 11
@@ -19,7 +19,7 @@ private enum BerlinClockRowType {
 struct BerlinClockRowCalculator {
     
     //MARK: Seconds Row Methods
-    func secondsLamp(_ seconds: Int) -> BerlinClockLampsState {
+    private func secondsLamp(_ seconds: Int) -> BerlinClockLampsState {
         switch seconds % 2 {
         case 0:
             return .on(.yellowColor)
@@ -29,7 +29,7 @@ struct BerlinClockRowCalculator {
     }
     
     //MARK: Minutes Row Methods
-    func fiveMinutesLamps(_ minutes: Int) -> [BerlinClockLampsState] {
+    private func fiveMinutesLamps(_ minutes: Int) -> [BerlinClockLampsState] {
         let onCount = minutes / 5
         return fillLampFromLeft(rowType: .fiveMinsRowCase, onCount: onCount) { index in
             let isQuarter = (index + 1).isMultiple(of: 3)
@@ -38,7 +38,7 @@ struct BerlinClockRowCalculator {
         }
     }
     
-    func oneMinutesLamps(_ minutes: Int) -> [BerlinClockLampsState] {
+    private func oneMinutesLamps(_ minutes: Int) -> [BerlinClockLampsState] {
         let onCount = minutes % 5
         return fillLampFromLeft(rowType: .oneMinsRowCase, onCount: onCount) { _ in
                 .on(.yellowColor)
@@ -46,14 +46,14 @@ struct BerlinClockRowCalculator {
     }
     
     //MARK: Hours Row Methods
-    func fiveHoursLamps(_ hours: Int) -> [BerlinClockLampsState] {
+    private func fiveHoursLamps(_ hours: Int) -> [BerlinClockLampsState] {
         let onCount = hours / 5
         return fillLampFromLeft(rowType: .fiveHoursRowCase, onCount: onCount) { _ in
                 .on(.redColor)
         }
     }
     
-    func oneHourLamps(_ hours: Int) -> [BerlinClockLampsState] {
+    private func oneHourLamps(_ hours: Int) -> [BerlinClockLampsState] {
         let onCount = hours % 5
         return fillLampFromLeft(rowType: .oneHoursRowCase, onCount: onCount) { _ in
                 .on(.redColor)
@@ -70,21 +70,18 @@ extension BerlinClockRowCalculator {
             index < onCount ? onLamp(index) : .off
         }
     }
-}
-
-// MARK: AllRow LampsState composed method
-extension BerlinClockRowCalculator {
-    func allRowLampsState(hours: Int, minutes: Int, seconds: Int) -> (secondsLamp: BerlinClockLampsState,
-                                                                      fiveMinsLamps: [BerlinClockLampsState],
-                                                                      oneMinsLamps: [BerlinClockLampsState],
-                                                                      fiveHoursLamps: [BerlinClockLampsState],
-                                                                      oneHoursLamps: [BerlinClockLampsState]) {
+    
+     func allRowLampsState(hours: Int, minutes: Int, seconds: Int) -> BerlinClockState {
         let secondsLampState = secondsLamp(seconds)
         let fiveMinsLampsState = fiveMinutesLamps(minutes)
         let oneMinsLampsState = oneMinutesLamps(minutes)
         let fiveHoursLampsState = fiveHoursLamps(hours)
         let oneHoursLampsState = oneHourLamps(hours)
         
-        return (secondsLampState, fiveMinsLampsState, oneMinsLampsState, fiveHoursLampsState, oneHoursLampsState)
+        return BerlinClockState(secondsLamp: secondsLampState,
+                                fiveMinsLamps: fiveMinsLampsState,
+                                oneMinsLamps: oneMinsLampsState,
+                                fiveHoursLamps: fiveHoursLampsState,
+                                oneHoursLamps: oneHoursLampsState)
     }
 }

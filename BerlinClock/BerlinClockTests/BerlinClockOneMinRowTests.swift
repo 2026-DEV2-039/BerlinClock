@@ -8,23 +8,23 @@ struct BerlinClockOneMinRowTests {
     @Test("Test one minute row is all off when minute is zero")
     func oneMinuteRow_isAllOff_whenMinutesIsZero() {
         let calculator = BerlinClockRowCalculator()
-        let result = calculator.oneMinutesLamps(0)
-        #expect(result.allSatisfy { $0 == .off })
+        let result = calculator.allRowLampsState(hours: 0, minutes: 0, seconds: 0)
+        #expect(result.oneMinsLamps.allSatisfy { $0 == .off })
     }
     
     @Test("Test one minute row one lamp is on when hours is 1")
     func oneMinuteRow_isOneLampOn_whenMinutesIsOne() {
         let calculator = BerlinClockRowCalculator()
-        let result = calculator.oneMinutesLamps(1)
-        #expect(result == [.on(.yellowColor), .off, .off, .off])
+        let result = calculator.allRowLampsState(hours: 0, minutes: 1, seconds: 0)
+        #expect(result.oneMinsLamps == [.on(.yellowColor), .off, .off, .off])
     }
     
     @Test("Test one miute row for (parametrised) minutes", arguments: [2, 3, 4, 6, 7, 8, 9, 11])
     func oneMinuteRow_isLampOn_whenMinutesArgs(minutes: Int) {
         let calculator = BerlinClockRowCalculator()
-        let result = calculator.oneMinutesLamps(minutes)
+        let result = calculator.allRowLampsState(hours: 0, minutes: minutes, seconds: 0)
         let expected = expectedOneMinuteRow(for: minutes)
-        #expect(result == expected)
+        #expect(result.oneMinsLamps == expected)
     }
 }
 
