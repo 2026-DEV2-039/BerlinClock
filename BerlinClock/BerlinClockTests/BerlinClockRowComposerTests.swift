@@ -61,5 +61,17 @@ struct BerlinClockRowComposerTests {
         #expect(result.fiveMinsLamps.allSatisfy { $0 == .off })
         #expect(result.oneMinsLamps.allSatisfy { $0 == .off })
     }
+    
+    @Test("One minute row shows 4 lamps at 4 minutes")
+    func oneMinuteRow_atFourMinutes() {
+        let calculator = BerlinClockRowCalculator()
+        let result = calculator.allRowLampsState(hours: 0, minutes: 4, seconds: 0)
+        
+        #expect(result.fiveMinsLamps.allSatisfy { $0 == .off })
+        #expect(result.oneMinsLamps.filter {
+            if case .on = $0 { return true }
+            return false
+        }.count == 4)
+    }
 }
 
