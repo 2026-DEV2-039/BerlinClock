@@ -99,5 +99,22 @@ struct BerlinClockRowComposerTests {
             Issue.record("Expected red quarter lamp at index 2")
         }
     }
+    
+    @Test("59 minutes sets correct lamps")
+    func minuteRow_atFiftyNine() {
+        let calculator = BerlinClockRowCalculator()
+        let result = calculator.allRowLampsState(hours: 0, minutes: 59, seconds: 0)
+        
+        #expect(result.fiveMinsLamps.filter {
+            if case .on = $0 { return true }
+            return false
+        }.count == 11)
+        
+        #expect(result.oneMinsLamps.filter {
+            if case .on = $0 { return true }
+            return false
+        }.count == 4)
+    }
+
 }
 
