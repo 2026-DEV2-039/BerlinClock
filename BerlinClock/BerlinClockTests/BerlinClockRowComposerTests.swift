@@ -88,5 +88,16 @@ struct BerlinClockRowComposerTests {
         #expect(result.oneMinsLamps.allSatisfy { $0 == .off })
     }
 
+    @Test("Third five-minute lamp is red at 15 minutes")
+    func fiveMinuteRow_marksQuarterRed() {
+        let calculator = BerlinClockRowCalculator()
+        let result = calculator.allRowLampsState(hours: 0, minutes: 15, seconds: 0)
+        
+        if case .on(.redColor) = result.fiveMinsLamps[2] {
+            #expect(true)
+        } else {
+            Issue.record("Expected red quarter lamp at index 2")
+        }
+    }
 }
 
