@@ -71,3 +71,20 @@ extension BerlinClockRowCalculator {
         }
     }
 }
+
+// MARK: AllRow LampsState composed method
+extension BerlinClockRowCalculator {
+    func allRowLampsState(hours: Int, minutes: Int, seconds: Int) -> (secondsLamp: BerlinClockLampsState,
+                                                                      fiveMinsLamps: [BerlinClockLampsState],
+                                                                      oneMinsLamps: [BerlinClockLampsState],
+                                                                      fiveHoursLamps: [BerlinClockLampsState],
+                                                                      oneHoursLamps: [BerlinClockLampsState]) {
+        let secondsLampState = secondsLamp(seconds)
+        let fiveMinsLampsState = fiveMinutesLamps(minutes)
+        let oneMinsLampsState = oneMinutesLamps(minutes)
+        let fiveHoursLampsState = fiveHoursLamps(hours)
+        let oneHoursLampsState = oneHourLamps(hours)
+        
+        return (secondsLampState, fiveMinsLampsState, oneMinsLampsState, fiveHoursLampsState, oneHoursLampsState)
+    }
+}
