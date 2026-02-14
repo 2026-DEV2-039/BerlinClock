@@ -40,5 +40,17 @@ struct BerlinClockRowComposerTests {
         let result = calculator.allRowLampsState(hours: 0, minutes: 0, seconds: 1)
         #expect(result.secondsLamp == .off)
     }
+    
+    @Test("Seconds lamp is ON at even seconds")
+    func secondsLamp_isOn_atEvenSeconds() {
+        let calculator = BerlinClockRowCalculator()
+        let result = calculator.allRowLampsState(hours: 0, minutes: 0, seconds: 58)
+        
+        if case .on = result.secondsLamp {
+            #expect(true)
+        } else {
+            Issue.record("Expected ON at even second")
+        }
+    }
 }
 
