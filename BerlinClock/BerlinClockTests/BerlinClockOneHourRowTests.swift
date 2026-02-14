@@ -71,7 +71,7 @@ extension BerlinClockOneHourRowTests {
             if index <= onCount {
                 return .on(.redColor)
             } else {
-                return .off(.defaultColor)
+                return .off
             }
         }
     }

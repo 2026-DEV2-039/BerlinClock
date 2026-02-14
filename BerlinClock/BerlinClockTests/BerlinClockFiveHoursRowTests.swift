@@ -56,7 +56,7 @@ extension BerlinClockFiveHoursRowTests {
                 let color: BerlinClockLampColor =  .redColor
                 return .on(color)
             } else {
-                return .off(.defaultColor)
+                return .off
             }
         }
     }

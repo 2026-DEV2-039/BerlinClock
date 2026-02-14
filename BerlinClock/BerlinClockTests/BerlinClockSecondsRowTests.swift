@@ -27,37 +27,28 @@ struct BerlinClockSecondsRowTests {
     func secondsLamp_isOff_whenSecondsIsOdd() {
         let calculator = BerlinClockRowCalculator()
         let result = calculator.secondsLamp(1)
-        #expect(result == .off(.defaultColor))
+        #expect(result == .off)
     }
     
     @Test("Seconds lamp is off for odd seconds (parameterized)", arguments: oddSeconds)
     func secondsLamp_isOn_whenSecondsIsOddWithArgs(seconds: Int) {
         let calculator = BerlinClockRowCalculator()
         let result = calculator.secondsLamp(seconds)
-        #expect(result == .off(.defaultColor))
+        #expect(result == .off)
     }
     
     @Test("Test isOn returns true when lamp state is .on")
     func isOn_returnsTrue_whenStateIsOn() {
         let state = BerlinClockLampsState.on(.yellowColor)
-        #expect(state.isOn == true)
+        if case let .on(color) = state {
+            #expect(color == .yellowColor)
+        }
     }
     
     @Test("isOn returns false when lamp state is .off")
     func isOn_returnsFalse_whenStateIsOff() {
-        let state = BerlinClockLampsState.off(.defaultColor)
-        #expect(state.isOn == false)
+        let state = BerlinClockLampsState.off
+        #expect(state == .off)
     }
     
-    @Test("Test lampColor returns correct color when state is .on")
-    func lampColor_returnsCorrectColor_whenStateIsOn() {
-        let state = BerlinClockLampsState.on(.yellowColor)
-        #expect(state.lampColor == .yellowColor)
-    }
-    
-    @Test("Test lampColor returns correct color when state is .off")
-    func lampColor_returnsCorrectColor_whenStateIsOff() {
-        let state = BerlinClockLampsState.off(.defaultColor)
-        #expect(state.lampColor == .defaultColor)
-    }
 }

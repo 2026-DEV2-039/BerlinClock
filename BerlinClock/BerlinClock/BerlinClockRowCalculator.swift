@@ -24,7 +24,7 @@ struct BerlinClockRowCalculator {
         case 0:
             return .on(.yellowColor)
         default:
-            return .off(.defaultColor)
+            return .off
         }
     }
     
@@ -67,7 +67,7 @@ extension BerlinClockRowCalculator {
                                   onCount: Int,
                                   onLampAt onLamp: (Int) -> BerlinClockLampsState) -> [BerlinClockLampsState] {
         (0..<rowType.lampCount).map { index in
-            index < onCount ? onLamp(index) : .off(.defaultColor)
+            index < onCount ? onLamp(index) : .off
         }
     }
 }

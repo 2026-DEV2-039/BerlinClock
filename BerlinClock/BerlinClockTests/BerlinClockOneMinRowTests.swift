@@ -9,14 +9,14 @@ struct BerlinClockOneMinRowTests {
     func oneMinuteRow_isAllOff_whenMinutesIsZero() {
         let calculator = BerlinClockRowCalculator()
         let result = calculator.oneMinutesLamps(0)
-        #expect(result.allSatisfy { $0 == .off(.defaultColor) })
+        #expect(result.allSatisfy { $0 == .off })
     }
     
     @Test("Test one minute row one lamp is on when hours is 1")
     func oneMinuteRow_isOneLampOn_whenMinutesIsOne() {
         let calculator = BerlinClockRowCalculator()
         let result = calculator.oneMinutesLamps(1)
-        #expect(result == [.on(.yellowColor), .off(.defaultColor), .off(.defaultColor), .off(.defaultColor)])
+        #expect(result == [.on(.yellowColor), .off, .off, .off])
     }
     
     @Test("Test one miute row for (parametrised) minutes", arguments: [2, 3, 4, 6, 7, 8, 9, 11])
@@ -36,7 +36,7 @@ extension BerlinClockOneMinRowTests {
             if index <= onCount {
                 return .on(.yellowColor)
             } else {
-                return .off(.defaultColor)
+                return .off
             }
         }
     }
