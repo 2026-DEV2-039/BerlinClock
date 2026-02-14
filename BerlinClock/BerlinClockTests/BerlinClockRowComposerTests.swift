@@ -204,6 +204,33 @@ struct BerlinClockRowComposerTests {
                                                                 DigitalTime(hours: 1, minutes: 1, seconds: 3))
         #expect(even.secondsLamp != odd.secondsLamp)
     }
-
+    
+    @Test("13:17:01 full composition correct")
+    func complex_time_composition() {
+        let converter = BerlinClockRowCalculator()
+        let state = converter.convertDigitalTimeToBerlinClock(digitalTime: DigitalTime(hours: 13,
+                                                                                       minutes: 17,
+                                                                                       seconds: 1))
+        #expect(state.secondsLamp == .off)
+        #expect(state.fiveHoursLamps.filter {
+            if case .on = $0 { return true }
+            return false
+        }.count == 2)
+        
+        #expect(state.oneHoursLamps.filter {
+            if case .on = $0 { return true }
+            return false
+        }.count == 3)
+        
+        #expect(state.fiveMinsLamps.filter {
+            if case .on = $0 { return true }
+            return false
+        }.count == 3)
+        
+        #expect(state.oneMinsLamps.filter {
+            if case .on = $0 { return true }
+            return false
+        }.count == 2)
+    }
 }
 
