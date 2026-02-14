@@ -73,5 +73,20 @@ struct BerlinClockRowComposerTests {
             return false
         }.count == 4)
     }
+    
+    @Test("Five minute row turns first lamp ON at 5 minutes")
+    func fiveMinuteRow_turnsOn_atFive() {
+        let calculator = BerlinClockRowCalculator()
+        let result = calculator.allRowLampsState(hours: 0, minutes: 5, seconds: 0)
+        
+        if case .on(.yellowColor) = result.fiveMinsLamps[0] {
+            #expect(true)
+        } else {
+            Issue.record("Expected first five-minute lamp ON")
+        }
+        
+        #expect(result.oneMinsLamps.allSatisfy { $0 == .off })
+    }
+
 }
 
