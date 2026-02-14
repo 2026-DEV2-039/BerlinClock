@@ -52,5 +52,14 @@ struct BerlinClockRowComposerTests {
             Issue.record("Expected ON at even second")
         }
     }
+    
+    @Test("All minute lamps are OFF at 0 minutes")
+    func minutes_areAllOff_atZero() {
+        let calculator = BerlinClockRowCalculator()
+        let result = calculator.allRowLampsState(hours: 0, minutes: 0, seconds: 0)
+        
+        #expect(result.fiveMinsLamps.allSatisfy { $0 == .off })
+        #expect(result.oneMinsLamps.allSatisfy { $0 == .off })
+    }
 }
 
