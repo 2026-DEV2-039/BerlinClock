@@ -116,7 +116,7 @@ struct BerlinClockRowComposerTests {
         }.count == 4)
     }
     
-    @Test("All hour lamps are OFF at 0 hours")
+    @Test("Test all hour lamps are OFF at 0 hours")
     func hours_areAllOff_atZero() {
         let calculator = BerlinClockRowCalculator()
         let result = calculator.allRowLampsState(hours: 0, minutes: 0, seconds: 0)
@@ -124,5 +124,18 @@ struct BerlinClockRowComposerTests {
         #expect(result.fiveHoursLamps.allSatisfy { $0 == .off })
         #expect(result.oneHoursLamps.allSatisfy { $0 == .off })
     }
+    
+    @Test("Test one hour row shows 4 lamps at 4 hours")
+    func oneHourRow_atFour() {
+        let calculator = BerlinClockRowCalculator()
+        let result = calculator.allRowLampsState(hours: 4, minutes: 0, seconds: 0)
+        
+        #expect(result.fiveHoursLamps.allSatisfy { $0 == .off })
+        #expect(result.oneHoursLamps.filter {
+            if case .on = $0 { return true }
+            return false
+        }.count == 4)
+    }
+
 }
 
