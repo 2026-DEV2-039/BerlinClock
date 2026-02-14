@@ -151,5 +151,21 @@ struct BerlinClockRowComposerTests {
         #expect(result.oneHoursLamps.allSatisfy { $0 == .off })
     }
 
+    @Test("Test 23 hours sets correct hour lamps")
+    func hourRow_atTwentyThree() {
+        let calculator = BerlinClockRowCalculator()
+        let result = calculator.allRowLampsState(hours: 23, minutes: 0, seconds: 0)
+        
+        #expect(result.fiveHoursLamps.filter {
+            if case .on = $0 { return true }
+            return false
+        }.count == 4)
+        
+        #expect(result.oneHoursLamps.filter {
+            if case .on = $0 { return true }
+            return false
+        }.count == 3)
+    }
+
 }
 
