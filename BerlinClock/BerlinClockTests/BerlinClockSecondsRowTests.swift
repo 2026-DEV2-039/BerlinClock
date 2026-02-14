@@ -11,28 +11,28 @@ struct BerlinClockSecondsRowTests {
     @Test("Test seconds lamp is on when seconds is even")
     func secondsLamp_isOn_whenSecondsIsEven() {
         let calculator = BerlinClockRowCalculator()
-        let result = calculator.allRowLampsState(hours: 0, minutes: 0, seconds: 0)
+        let result = calculator.convertDigitalTimeToBerlinClock(DigitalTime(hours: 0, minutes: 0, seconds: 0))
         #expect(result.secondsLamp == .on(.yellowColor))
     }
     
     @Test("Test Seconds lamp is ON for even seconds (parameterized)", arguments: evenSeconds)
     func secondsLamp_isOn_whenSecondsIsEvenWithArgs(seconds: Int) {
         let calculator = BerlinClockRowCalculator()
-        let result = calculator.allRowLampsState(hours: 0, minutes: 0, seconds: seconds)
+        let result = calculator.convertDigitalTimeToBerlinClock(DigitalTime(hours: 0, minutes: 0, seconds: seconds))
         #expect(result.secondsLamp == .on(.yellowColor))
     }
     
     @Test("Test seconds lamp is off when second is odd")
     func secondsLamp_isOff_whenSecondsIsOdd() {
         let calculator = BerlinClockRowCalculator()
-        let result = calculator.allRowLampsState(hours: 0, minutes: 0, seconds: 1)
+        let result = calculator.convertDigitalTimeToBerlinClock(DigitalTime(hours: 0, minutes: 0, seconds: 1))
         #expect(result.secondsLamp == .off)
     }
     
     @Test("Seconds lamp is off for odd seconds (parameterized)", arguments: oddSeconds)
     func secondsLamp_isOn_whenSecondsIsOddWithArgs(seconds: Int) {
         let calculator = BerlinClockRowCalculator()
-        let result = calculator.allRowLampsState(hours: 0, minutes: 0, seconds: seconds)
+        let result = calculator.convertDigitalTimeToBerlinClock(DigitalTime(hours: 0, minutes: 0, seconds: seconds))
         #expect(result.secondsLamp == .off)
     }
     

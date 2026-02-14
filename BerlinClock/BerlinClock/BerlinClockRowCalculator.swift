@@ -71,7 +71,7 @@ extension BerlinClockRowCalculator {
         }
     }
     
-     func allRowLampsState(hours: Int, minutes: Int, seconds: Int) -> BerlinClockState {
+    private func allRowLampsState(hours: Int, minutes: Int, seconds: Int) -> BerlinClockState {
         let secondsLampState = secondsLamp(seconds)
         let fiveMinsLampsState = fiveMinutesLamps(minutes)
         let oneMinsLampsState = oneMinutesLamps(minutes)
@@ -88,7 +88,7 @@ extension BerlinClockRowCalculator {
 
 // MARK: DigitalTimeToBerlinClockProtocol Methods
 extension BerlinClockRowCalculator : DigitalTimeToBerlinClockProtocol {
-    func convertDigitalTimeToBerlinClock(digitalTime: DigitalTime) -> BerlinClockState {
+    func convertDigitalTimeToBerlinClock(_ digitalTime: DigitalTime) -> BerlinClockState {
         return allRowLampsState(hours: digitalTime.hours,
                                 minutes: digitalTime.minutes,
                                 seconds: digitalTime.seconds)

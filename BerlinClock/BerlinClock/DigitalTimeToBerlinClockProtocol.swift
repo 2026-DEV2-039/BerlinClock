@@ -1,5 +1,5 @@
 import Foundation
 
 protocol DigitalTimeToBerlinClockProtocol {
-    func convertDigitalTimeToBerlinClock(digitalTime: DigitalTime) -> BerlinClockState
+    func convertDigitalTimeToBerlinClock(_ digitalTime: DigitalTime) -> BerlinClockState
 }

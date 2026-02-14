@@ -8,7 +8,7 @@ struct BerlinClockRowComposerTests {
     @Test("Test composing BerlinClock state")
     func compose_returnsBerlinClockAllLampsState() {
         let calculator = BerlinClockRowCalculator()
-        let state = calculator.allRowLampsState(hours: 0, minutes: 0, seconds: 0)
+        let state = calculator.convertDigitalTimeToBerlinClock(DigitalTime(hours: 0, minutes: 0, seconds: 0))
         
         // seconds lamp should be a single LampState (no count)
         #expect(state.secondsLamp == BerlinClockLampsState.on(.yellowColor))
@@ -25,7 +25,7 @@ struct BerlinClockRowComposerTests {
     @Test("Test seconds lamp is ON at 0 seconds")
     func secondsLamp_isOn_atZero() {
         let calculator = BerlinClockRowCalculator()
-        let result = calculator.allRowLampsState(hours: 0, minutes: 0, seconds: 0)
+        let result = calculator.convertDigitalTimeToBerlinClock(DigitalTime(hours: 0, minutes: 0, seconds: 0))
         
         if case .on(.yellowColor) = result.secondsLamp {
             #expect(true)
@@ -37,14 +37,14 @@ struct BerlinClockRowComposerTests {
     @Test("Test seconds lamp is OFF at 1 second")
     func secondsLamp_isOff_atOne() {
         let calculator = BerlinClockRowCalculator()
-        let result = calculator.allRowLampsState(hours: 0, minutes: 0, seconds: 1)
+        let result = calculator.convertDigitalTimeToBerlinClock(DigitalTime(hours: 0, minutes: 0, seconds: 1))
         #expect(result.secondsLamp == .off)
     }
     
     @Test("Test seconds lamp is ON at even seconds")
     func secondsLamp_isOn_atEvenSeconds() {
         let calculator = BerlinClockRowCalculator()
-        let result = calculator.allRowLampsState(hours: 0, minutes: 0, seconds: 58)
+        let result = calculator.convertDigitalTimeToBerlinClock(DigitalTime(hours: 0, minutes: 0, seconds: 58))
         
         if case .on = result.secondsLamp {
             #expect(true)
@@ -56,7 +56,7 @@ struct BerlinClockRowComposerTests {
     @Test("Test all minute lamps are OFF at 0 minutes")
     func minutes_areAllOff_atZero() {
         let calculator = BerlinClockRowCalculator()
-        let result = calculator.allRowLampsState(hours: 0, minutes: 0, seconds: 0)
+        let result = calculator.convertDigitalTimeToBerlinClock(DigitalTime(hours: 0, minutes: 0, seconds: 0))
         
         #expect(result.fiveMinsLamps.allSatisfy { $0 == .off })
         #expect(result.oneMinsLamps.allSatisfy { $0 == .off })
@@ -65,7 +65,7 @@ struct BerlinClockRowComposerTests {
     @Test("Test one minute row shows 4 lamps at 4 minutes")
     func oneMinuteRow_atFourMinutes() {
         let calculator = BerlinClockRowCalculator()
-        let result = calculator.allRowLampsState(hours: 0, minutes: 4, seconds: 0)
+        let result = calculator.convertDigitalTimeToBerlinClock(DigitalTime(hours: 0, minutes: 4, seconds: 0))
         
         #expect(result.fiveMinsLamps.allSatisfy { $0 == .off })
         #expect(result.oneMinsLamps.filter {
@@ -77,7 +77,7 @@ struct BerlinClockRowComposerTests {
     @Test("Test five minute row turns first lamp ON at 5 minutes")
     func fiveMinuteRow_turnsOn_atFive() {
         let calculator = BerlinClockRowCalculator()
-        let result = calculator.allRowLampsState(hours: 0, minutes: 5, seconds: 0)
+        let result = calculator.convertDigitalTimeToBerlinClock(DigitalTime(hours: 0, minutes: 5, seconds: 0))
         
         if case .on(.yellowColor) = result.fiveMinsLamps[0] {
             #expect(true)
@@ -91,7 +91,7 @@ struct BerlinClockRowComposerTests {
     @Test("Test third five-minute lamp is red at 15 minutes")
     func fiveMinuteRow_marksQuarterRed() {
         let calculator = BerlinClockRowCalculator()
-        let result = calculator.allRowLampsState(hours: 0, minutes: 15, seconds: 0)
+        let result = calculator.convertDigitalTimeToBerlinClock(DigitalTime(hours: 0, minutes: 15, seconds: 0))
         
         if case .on(.redColor) = result.fiveMinsLamps[2] {
             #expect(true)
@@ -103,7 +103,7 @@ struct BerlinClockRowComposerTests {
     @Test("Test 59 minutes sets correct lamps")
     func minuteRow_atFiftyNine() {
         let calculator = BerlinClockRowCalculator()
-        let result = calculator.allRowLampsState(hours: 0, minutes: 59, seconds: 0)
+        let result = calculator.convertDigitalTimeToBerlinClock(DigitalTime(hours: 0, minutes: 59, seconds: 0))
         
         #expect(result.fiveMinsLamps.filter {
             if case .on = $0 { return true }
@@ -119,7 +119,7 @@ struct BerlinClockRowComposerTests {
     @Test("Test all hour lamps are OFF at 0 hours")
     func hours_areAllOff_atZero() {
         let calculator = BerlinClockRowCalculator()
-        let result = calculator.allRowLampsState(hours: 0, minutes: 0, seconds: 0)
+        let result = calculator.convertDigitalTimeToBerlinClock(DigitalTime(hours: 0, minutes: 0, seconds: 0))
         
         #expect(result.fiveHoursLamps.allSatisfy { $0 == .off })
         #expect(result.oneHoursLamps.allSatisfy { $0 == .off })
@@ -128,7 +128,7 @@ struct BerlinClockRowComposerTests {
     @Test("Test one hour row shows 4 lamps at 4 hours")
     func oneHourRow_atFour() {
         let calculator = BerlinClockRowCalculator()
-        let result = calculator.allRowLampsState(hours: 4, minutes: 0, seconds: 0)
+        let result = calculator.convertDigitalTimeToBerlinClock(DigitalTime(hours: 4, minutes: 0, seconds: 0))
         
         #expect(result.fiveHoursLamps.allSatisfy { $0 == .off })
         #expect(result.oneHoursLamps.filter {
@@ -140,7 +140,7 @@ struct BerlinClockRowComposerTests {
     @Test("Test five hour row turns first lamp ON at 5 hours")
     func fiveHourRow_turnsOn_atFive() {
         let calculator = BerlinClockRowCalculator()
-        let result = calculator.allRowLampsState(hours: 5, minutes: 0, seconds: 0)
+        let result = calculator.convertDigitalTimeToBerlinClock(DigitalTime(hours: 5, minutes: 0, seconds: 0))
         
         if case .on(.redColor) = result.fiveHoursLamps[0] {
             #expect(true)
@@ -154,7 +154,7 @@ struct BerlinClockRowComposerTests {
     @Test("Test 23 hours sets correct hour lamps")
     func hourRow_atTwentyThree() {
         let calculator = BerlinClockRowCalculator()
-        let result = calculator.allRowLampsState(hours: 23, minutes: 0, seconds: 0)
+        let result = calculator.convertDigitalTimeToBerlinClock(DigitalTime(hours: 23, minutes: 0, seconds: 0))
         
         #expect(result.fiveHoursLamps.filter {
             if case .on = $0 { return true }
@@ -170,7 +170,7 @@ struct BerlinClockRowComposerTests {
     @Test("Test full clock state at 23:59:59")
     func fullClock_atMaxTime() {
         let calculator = BerlinClockRowCalculator()
-        let result = calculator.allRowLampsState(hours: 23, minutes: 59, seconds: 59)
+        let result = calculator.convertDigitalTimeToBerlinClock(DigitalTime(hours: 23, minutes: 59, seconds: 59))
         
         #expect(result.secondsLamp == .off)
         #expect(result.fiveMinsLamps.count == 11)
@@ -182,7 +182,7 @@ struct BerlinClockRowComposerTests {
     @Test("Test midnight 00:00:00 produces all lamps OFF except seconds ON")
     func midnight_state() {
         let converter = BerlinClockRowCalculator()
-        let state = converter.convertDigitalTimeToBerlinClock(digitalTime: DigitalTime(hours: 0, minutes: 0, seconds: 0))
+        let state = converter.convertDigitalTimeToBerlinClock(DigitalTime(hours: 0, minutes: 0, seconds: 0))
         if case .on(.yellowColor) = state.secondsLamp {
             #expect(true)
         } else {
@@ -198,17 +198,15 @@ struct BerlinClockRowComposerTests {
     @Test("Test seconds toggles ON/OFF")
     func seconds_toggle() {
         let converter = BerlinClockRowCalculator()
-        let even = converter.convertDigitalTimeToBerlinClock(digitalTime:
-                                                                DigitalTime(hours: 1, minutes: 1, seconds: 2))
-        let odd = converter.convertDigitalTimeToBerlinClock(digitalTime:
-                                                                DigitalTime(hours: 1, minutes: 1, seconds: 3))
+        let even = converter.convertDigitalTimeToBerlinClock(DigitalTime(hours: 1, minutes: 1, seconds: 2))
+        let odd = converter.convertDigitalTimeToBerlinClock(DigitalTime(hours: 1, minutes: 1, seconds: 3))
         #expect(even.secondsLamp != odd.secondsLamp)
     }
     
     @Test("Test 13:17:01 full composition correct")
     func complex_time_composition() {
         let converter = BerlinClockRowCalculator()
-        let state = converter.convertDigitalTimeToBerlinClock(digitalTime: DigitalTime(hours: 13,
+        let state = converter.convertDigitalTimeToBerlinClock(DigitalTime(hours: 13,
                                                                                        minutes: 17,
                                                                                        seconds: 1))
         #expect(state.secondsLamp == .off)
@@ -236,7 +234,7 @@ struct BerlinClockRowComposerTests {
     @Test("Test 23:59:59 produces correct max state")
     func max_time_state() {
         let converter = BerlinClockRowCalculator()
-        let state = converter.convertDigitalTimeToBerlinClock(digitalTime: DigitalTime(hours: 23,
+        let state = converter.convertDigitalTimeToBerlinClock(DigitalTime(hours: 23,
                                                                                       minutes: 59,
                                                                                       seconds: 59))
         
