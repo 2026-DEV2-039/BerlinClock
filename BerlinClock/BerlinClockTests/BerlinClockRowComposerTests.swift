@@ -205,7 +205,7 @@ struct BerlinClockRowComposerTests {
         #expect(even.secondsLamp != odd.secondsLamp)
     }
     
-    @Test("13:17:01 full composition correct")
+    @Test("Test 13:17:01 full composition correct")
     func complex_time_composition() {
         let converter = BerlinClockRowCalculator()
         let state = converter.convertDigitalTimeToBerlinClock(digitalTime: DigitalTime(hours: 13,
@@ -231,6 +231,36 @@ struct BerlinClockRowComposerTests {
             if case .on = $0 { return true }
             return false
         }.count == 2)
+    }
+    
+    @Test("Test 23:59:59 produces correct max state")
+    func max_time_state() {
+        let converter = BerlinClockRowCalculator()
+        let state = converter.convertDigitalTimeToBerlinClock(digitalTime: DigitalTime(hours: 23,
+                                                                                      minutes: 59,
+                                                                                      seconds: 59))
+        
+        #expect(state.secondsLamp == .off)
+        
+        #expect(state.fiveHoursLamps.filter {
+            if case .on = $0 { return true }
+            return false
+        }.count == 4)
+        
+        #expect(state.oneHoursLamps.filter {
+            if case .on = $0 { return true }
+            return false
+        }.count == 3)
+        
+        #expect(state.fiveMinsLamps.filter {
+            if case .on = $0 { return true }
+            return false
+        }.count == 11)
+        
+        #expect(state.oneMinsLamps.filter {
+            if case .on = $0 { return true }
+            return false
+        }.count == 4)
     }
 }
 
