@@ -85,3 +85,12 @@ extension BerlinClockRowCalculator {
                                 oneHoursLamps: oneHoursLampsState)
     }
 }
+
+// MARK: DigitalTimeToBerlinClockProtocol Methods
+extension BerlinClockRowCalculator : DigitalTimeToBerlinClockProtocol {
+    func convertDigitalTimeToBerlinClock(digitalTime: DigitalTime) -> BerlinClockState {
+        return allRowLampsState(hours: digitalTime.hours,
+                                minutes: digitalTime.minutes,
+                                seconds: digitalTime.seconds)
+    }
+}

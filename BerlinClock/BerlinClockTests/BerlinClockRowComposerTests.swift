@@ -178,5 +178,21 @@ struct BerlinClockRowComposerTests {
         #expect(result.fiveHoursLamps.count == 4)
         #expect(result.oneHoursLamps.count == 4)
     }
+    
+    @Test("Test midnight 00:00:00 produces all lamps OFF except seconds ON")
+    func midnight_state() {
+        let converter = BerlinClockRowCalculator()
+        let state = converter.convertDigitalTimeToBerlinClock(digitalTime: DigitalTime(hours: 0, minutes: 0, seconds: 0))
+        if case .on(.yellowColor) = state.secondsLamp {
+            #expect(true)
+        } else {
+            Issue.record("Seconds should be ON at even second")
+        }
+        
+        #expect(state.fiveMinsLamps.allSatisfy { $0 == .off })
+        #expect(state.oneMinsLamps.allSatisfy { $0 == .off })
+        #expect(state.fiveHoursLamps.allSatisfy { $0 == .off })
+        #expect(state.oneHoursLamps.allSatisfy { $0 == .off })
+    }
 }
 
