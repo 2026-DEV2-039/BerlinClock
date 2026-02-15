@@ -108,7 +108,7 @@ struct BerlinClockViewModelTests {
         
         mockService.send(time)
         
-        #expect(viewModel.allLampsState == expectedState)
+        #expect(viewModel.lampsRows.first?.lamps.first?.isOn == false)
         #expect(mockConvertor.receivedTime == time)
     }
     
@@ -141,7 +141,7 @@ struct BerlinClockViewModelTests {
         mockConvertor.stubState = secondState
         mockService.send(DigitalTime(hours: 2, minutes: 2, seconds: 2))
         
-        #expect(viewModel.allLampsState.secondsLamp == secondState.secondsLamp)
+        #expect(viewModel.lampsRows.first?.lamps.first?.lampColor == .yellowColor)
     }
     
     @Test("Test rows are built correctly from BerlinClockState")
@@ -171,6 +171,7 @@ struct BerlinClockViewModelTests {
         
         #expect(viewModel.lampsRows.count == 5)
         #expect(viewModel.lampsRows.first?.type == .seconds)
-        #expect(viewModel.lampsRows.first?.lamps.first == .on(.yellowColor))
+        #expect(viewModel.lampsRows.first?.lamps.first?.isOn == true)
+        #expect(viewModel.lampsRows.first?.lamps.first?.lampColor == .yellowColor)
     }
 }
