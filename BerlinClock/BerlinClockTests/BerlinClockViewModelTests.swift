@@ -36,4 +36,20 @@ struct BerlinClockViewModelTests {
         #expect(viewModel.digitalTimeText == "")
     }
 
+    @Test("Test digitalTimeText updated after startClock")
+    func digitalTimeText_updatesCorrectly_whenTimeIsEmitted() {
+        let mockService = MockBerlinClockService()
+        let mockConvertor = MockBerlinLampStateConvertor()
+        
+        let viewModel = BerlinClockViewModel(
+            clockService: mockService,
+            berlinLampStateConvertor: mockConvertor
+        )
+        
+        viewModel.startClock()
+        
+        mockService.send(DigitalTime(hours: 9, minutes: 8, seconds: 7))
+        
+        #expect(viewModel.digitalTimeText == "09:08:07")
+    }
 }

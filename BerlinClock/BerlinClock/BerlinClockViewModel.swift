@@ -19,6 +19,25 @@ final class BerlinClockViewModel: ObservableObject {
         self.berlinLampStateConvertor = berlinLampStateConvertor
     }
     
+    // MARK: - Public Binding Trigger
+    func startClock() {
+        clockService.timePublisher
+            .sink { [weak self] digitalTime in
+                guard let self = self else { return }
+                self.digitalTimeText = self.formattedText(from: digitalTime)
+            }
+            .store(in: &cancellables)
+    }
+}
+
+//MARK: Presentation
+private extension BerlinClockViewModel {
+    func formattedText(from time: DigitalTime) -> String {
+        String(format: "%02d:%02d:%02d",
+               time.hours,
+               time.minutes,
+               time.seconds)
+    }
 }
 
 
