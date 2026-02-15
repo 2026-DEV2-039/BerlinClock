@@ -7,7 +7,7 @@ import Combine
 @Suite("BerlinClockViewModel Tests")
 struct BerlinClockViewModelTests {
     
-    @Test("Initial digitalTimeText is empty")
+    @Test("Test initial digitalTimeText is empty")
     func initialState_isEmpty() {
         
         let mockService = MockBerlinClockService()
@@ -17,6 +17,21 @@ struct BerlinClockViewModelTests {
             clockService: mockService,
             berlinLampStateConvertor: mockConvertor
         )
+        
+        #expect(viewModel.digitalTimeText == "")
+    }
+    
+    @Test("Test no update before startClock is called")
+    func noStart_noUpdate() {
+        let mockService = MockBerlinClockService()
+        let mockConvertor = MockBerlinLampStateConvertor()
+        
+        let viewModel = BerlinClockViewModel(
+            clockService: mockService,
+            berlinLampStateConvertor: mockConvertor
+        )
+        
+        mockService.send(DigitalTime(hours: 12, minutes: 34, seconds: 56))
         
         #expect(viewModel.digitalTimeText == "")
     }
