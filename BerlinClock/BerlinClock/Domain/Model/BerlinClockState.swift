@@ -11,9 +11,15 @@ struct BerlinClockState: Equatable, Sendable {
 extension BerlinClockState {
     static let empty = BerlinClockState(
         secondsLamp: .off,
-        fiveMinsLamps: Array(repeating: .off, count: 11),
-        oneMinsLamps: Array(repeating: .off, count: 4),
-        fiveHoursLamps: Array(repeating: .off, count: 4),
-        oneHoursLamps: Array(repeating: .off, count: 4)
+        fiveMinsLamps: emptyRow(for: .fiveMinsRowCase),
+        oneMinsLamps: emptyRow(for: .oneMinsRowCase),
+        fiveHoursLamps: emptyRow(for: .fiveHoursRowCase),
+        oneHoursLamps: emptyRow(for: .oneMinsRowCase)
     )
+}
+
+private extension BerlinClockState {
+    static func emptyRow(for type: BerlinClockRowType) -> [BerlinClockLampsState] {
+        Array(repeating: .off, count: type.lampCount)
+    }
 }

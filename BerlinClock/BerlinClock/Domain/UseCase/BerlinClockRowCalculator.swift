@@ -1,6 +1,6 @@
 import Foundation
 
-private enum BerlinClockRowType {
+enum BerlinClockRowType {
     case fiveMinsRowCase
     case oneMinsRowCase
     case fiveHoursRowCase
