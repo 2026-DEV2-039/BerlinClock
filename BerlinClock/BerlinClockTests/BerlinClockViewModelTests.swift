@@ -143,5 +143,34 @@ struct BerlinClockViewModelTests {
         
         #expect(viewModel.allLampsState.secondsLamp == secondState.secondsLamp)
     }
-
+    
+    @Test("Test rows are built correctly from BerlinClockState")
+    func rows_areBuiltCorrectly_fromState() {
+        
+        let mockService = MockBerlinClockService()
+        let mockConvertor = MockBerlinLampStateConvertor()
+        
+        let customState = BerlinClockState(
+            secondsLamp: .on(.yellowColor),
+            fiveMinsLamps: Array(repeating: .off, count: 11),
+            oneMinsLamps: Array(repeating: .off, count: 4),
+            fiveHoursLamps: Array(repeating: .off, count: 4),
+            oneHoursLamps: Array(repeating: .off, count: 4)
+        )
+        
+        mockConvertor.stubState = customState
+        
+        let viewModel = BerlinClockViewModel(
+            clockService: mockService,
+            berlinLampStateConvertor: mockConvertor
+        )
+        
+        viewModel.startClock()
+        
+        mockService.send(DigitalTime(hours: 0, minutes: 0, seconds: 0))
+        
+        #expect(viewModel.lampsRows.count == 5)
+        #expect(viewModel.lampsRows.first?.type == .seconds)
+        #expect(viewModel.lampsRows.first?.lamps.first == .on(.yellowColor))
+    }
 }

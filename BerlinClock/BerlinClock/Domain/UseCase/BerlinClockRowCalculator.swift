@@ -1,6 +1,7 @@
 import Foundation
 
 enum BerlinClockRowType {
+    case seconds
     case fiveMinsRowCase
     case oneMinsRowCase
     case fiveHoursRowCase
@@ -8,6 +9,7 @@ enum BerlinClockRowType {
     
     var lampCount: Int {
         switch self {
+        case .seconds: return 1
         case .fiveMinsRowCase: return 11
         case .oneMinsRowCase: return 4
         case .fiveHoursRowCase: return 4
