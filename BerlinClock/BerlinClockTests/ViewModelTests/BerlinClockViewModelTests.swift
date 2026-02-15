@@ -5,6 +5,7 @@ import Combine
 @testable import BerlinClock
 
 @Suite("BerlinClockViewModel Tests")
+@MainActor
 struct BerlinClockViewModelTests {
     
     @Test("Test initial digitalTimeText is empty")

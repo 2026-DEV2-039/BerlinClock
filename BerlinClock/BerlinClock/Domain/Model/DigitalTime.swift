@@ -1,6 +1,6 @@
 import Foundation
 
-struct DigitalTime: Equatable {
+struct DigitalTime: Equatable, Sendable {
     let hours: Int
     let minutes: Int
     let seconds: Int

@@ -64,15 +64,29 @@ private extension BerlinClockViewModel {
     }
     
     func buildRows(from state: BerlinClockState) -> [BerlinClockRowModel] {
-        let secondsLampsRow =  getLampsRowModel(type: .seconds, lamps: [state.secondsLamp])
-        let fiveHoursLampsRow =  getLampsRowModel(type: .fiveHoursRowCase, lamps: state.fiveHoursLamps)
-        let oneHoursLampsRow =  getLampsRowModel(type: .oneHoursRowCase, lamps: state.oneHoursLamps)
-        let fiveMinsLampsRow =  getLampsRowModel(type: .fiveMinsRowCase, lamps: state.fiveMinsLamps)
-        let oneMinsLampsRow =  getLampsRowModel(type: .oneMinsRowCase, lamps: state.oneMinsLamps)
-        
-        return [secondsLampsRow, fiveHoursLampsRow, oneHoursLampsRow, fiveMinsLampsRow, oneMinsLampsRow]
+        BerlinClockRowType.displayOrder.map { type in
+            getLampsRowModel(
+                type: type,
+                lamps: lamps(for: type, state: state)
+            )
+        }
     }
     
+    func lamps(for type: BerlinClockRowType,state: BerlinClockState) -> [BerlinClockLampsState] {
+        switch type {
+        case .seconds:
+            return [state.secondsLamp]
+        case .fiveHoursRowCase:
+            return state.fiveHoursLamps
+        case .oneHoursRowCase:
+            return state.oneHoursLamps
+        case .fiveMinsRowCase:
+            return state.fiveMinsLamps
+        case .oneMinsRowCase:
+            return state.oneMinsLamps
+        }
+    }
+
     func getLampsRowModel(type: BerlinClockRowType, lamps: [BerlinClockLampsState]) -> BerlinClockRowModel {
         let shape: LampShape
         

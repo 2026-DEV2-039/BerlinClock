@@ -1,6 +1,6 @@
 import Foundation
 
-enum BerlinClockLampColor {
+enum BerlinClockLampColor: Equatable, Sendable {
     case yellowColor
     case redColor
     case noOffColor
