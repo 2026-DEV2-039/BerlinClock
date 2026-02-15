@@ -13,18 +13,10 @@ final class BerlinClockService {
         self.timeProvider = timeProvider
         self.timerPublisher = timerPublisher
     }
-    
-    var timePublisher: AnyPublisher<DigitalTime, Never> {
-        timerPublisher.publisher(interval: 1.0)
-            .map { [weak self] _ in
-                guard let self = self else { return DigitalTime(hours: 0, minutes: 0, seconds: 0)}
-                return self.now()
-            }
-            .prepend(now())
-            .eraseToAnyPublisher()
-    }
-    
-    //MARK: Helper Methods
+}
+
+//MARK: Helper Methods
+extension BerlinClockService {
     private func clockTime(from date: Date) -> DigitalTime {
         let components = calendar.dateComponents([.hour, .minute, .second],
                                                  from: date)
@@ -36,5 +28,18 @@ final class BerlinClockService {
     
     private func now() -> DigitalTime {
         clockTime(from: timeProvider.now())
+    }
+}
+
+//MARK: BerlinClockServiceProtocol
+extension BerlinClockService: BerlinClockServiceProtocol {
+    var timePublisher: AnyPublisher<DigitalTime, Never> {
+        timerPublisher.publisher(interval: 1.0)
+            .map { [weak self] _ in
+                guard let self = self else { return DigitalTime(hours: 0, minutes: 0, seconds: 0)}
+                return self.now()
+            }
+            .prepend(now())
+            .eraseToAnyPublisher()
     }
 }

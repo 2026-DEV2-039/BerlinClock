@@ -33,7 +33,7 @@ struct BerlinClockServiceTests {
         let calendar = Calendar(identifier: .gregorian)
         
         let date = calendar.date(from: DateComponents(
-            year: 2024,
+            year: 2026,
             month: 1,
             day: 1,
             hour: 12,
