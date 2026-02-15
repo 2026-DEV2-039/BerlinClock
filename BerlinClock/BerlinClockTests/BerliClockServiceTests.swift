@@ -13,19 +13,23 @@ struct BerlinClockServiceTests {
         let mockTime = MockSystemTimeProvider(date: fixedDate)
         let mockTimer = MockSystemTimePublisher()
         
-        let service = BerlinClockService(timeProvider: mockTime,
-                                         timerPublisher: mockTimer)
+        let service = BerlinClockService(
+            timeProvider: mockTime,
+            timerPublisher: mockTimer
+        )
         
         var values: [DigitalTime] = []
-        
         let cancellable = service.timePublisher
             .sink { values.append($0) }
         
-        #expect(values.count == 1)
-        #expect(values[0].seconds == 0)
+        let mockDigitalTime = DigitalTime(hours: 0, minutes: 0, seconds: 0)
         
+        #expect(values.count == 1)
+        #expect(values[0].seconds == mockDigitalTime.seconds)
+
         _ = cancellable
     }
+
     
     @Test("Test emits when timer sends value")
     func emitsOnTimerSend() {
@@ -57,11 +61,13 @@ struct BerlinClockServiceTests {
         
         mockTimer.send(date)
         
-        #expect(values.count == 2)
-        #expect(values[1].hours == 12)
-        #expect(values[1].minutes == 34)
-        #expect(values[1].seconds == 56)
+        let mockDigitalTime = DigitalTime(hours: 12, minutes: 34, seconds: 56)
         
+        #expect(values.count == 2)
+        #expect(values[1].hours == mockDigitalTime.hours)
+        #expect(values[1].minutes == mockDigitalTime.minutes)
+        #expect(values[1].seconds == mockDigitalTime.seconds)
+
         _ = cancellable
     }
     
@@ -92,9 +98,12 @@ struct BerlinClockServiceTests {
         let cancellable = service.timePublisher
             .sink { values.append($0) }
         
-        #expect(values.first?.hours == 0)
-        #expect(values.first?.minutes == 0)
-        #expect(values.first?.seconds == 0)
+        let mockDigitalTime = DigitalTime(hours: 0, minutes: 0, seconds: 0)
+        
+        #expect(values.count == 1)
+        #expect(values[0].hours == mockDigitalTime.hours)
+        #expect(values[0].minutes == mockDigitalTime.minutes)
+        #expect(values[0].seconds == mockDigitalTime.seconds)
         
         _ = cancellable
     }
@@ -121,9 +130,11 @@ struct BerlinClockServiceTests {
         mockTime.currentDate = newDate
         mockTimer.send(newDate)
         
-        #expect(values.last?.hours == 5)
-        #expect(values.last?.minutes == 6)
-        #expect(values.last?.seconds == 7)
+        let mockDigitalTime = DigitalTime(hours: 5, minutes: 6, seconds: 7)
+        
+        #expect(values.last?.hours == mockDigitalTime.hours)
+        #expect(values.last?.minutes == mockDigitalTime.minutes)
+        #expect(values.last?.seconds == mockDigitalTime.seconds)
         
         _ = cancellable
     }
