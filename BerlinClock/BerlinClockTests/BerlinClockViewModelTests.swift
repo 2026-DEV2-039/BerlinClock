@@ -111,4 +111,37 @@ struct BerlinClockViewModelTests {
         #expect(viewModel.allLampsState == expectedState)
         #expect(mockConvertor.receivedTime == time)
     }
+    
+    @Test("Test lampState reflects latest emitted value")
+    func lampState_reflectsLatestValue_whenMultipleTimesAreEmitted() {
+        
+        let mockService = MockBerlinClockService()
+        let mockConvertor = MockBerlinLampStateConvertor()
+        
+        let firstState = BerlinClockState.empty
+        
+        let secondState = BerlinClockState(
+            secondsLamp: .on(.yellowColor),
+            fiveMinsLamps: Array(repeating: .on(.redColor), count: 11),
+            oneMinsLamps: Array(repeating: .off, count: 4),
+            fiveHoursLamps: Array(repeating: .off, count: 4),
+            oneHoursLamps: Array(repeating: .off, count: 4)
+        )
+        
+        let viewModel = BerlinClockViewModel(
+            clockService: mockService,
+            berlinLampStateConvertor: mockConvertor
+        )
+        
+        viewModel.startClock()
+        
+        mockConvertor.stubState = firstState
+        mockService.send(DigitalTime(hours: 1, minutes: 1, seconds: 1))
+        
+        mockConvertor.stubState = secondState
+        mockService.send(DigitalTime(hours: 2, minutes: 2, seconds: 2))
+        
+        #expect(viewModel.allLampsState.secondsLamp == secondState.secondsLamp)
+    }
+
 }
