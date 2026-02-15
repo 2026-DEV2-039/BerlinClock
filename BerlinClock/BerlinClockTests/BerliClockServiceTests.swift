@@ -98,4 +98,33 @@ struct BerlinClockServiceTests {
         
         _ = cancellable
     }
+    
+    @Test("Test updated timeProvider value")
+    func updatedTimeBetweenTicks() {
+        let calendar = Calendar(identifier: .gregorian)
+        let mockTime = MockSystemTimeProvider(date: Date())
+        let mockTimer = MockSystemTimePublisher()
+        
+        let service = BerlinClockService(
+            calendar: calendar,
+            timeProvider: mockTime,
+            timerPublisher: mockTimer
+        )
+        
+        var values: [DigitalTime] = []
+        
+        let cancellable = service.timePublisher
+            .sink { values.append($0) }
+        
+        // Change time
+        let newDate = calendar.date(from: DateComponents(hour: 5, minute: 6, second: 7))!
+        mockTime.currentDate = newDate
+        mockTimer.send(newDate)
+        
+        #expect(values.last?.hours == 5)
+        #expect(values.last?.minutes == 6)
+        #expect(values.last?.seconds == 7)
+        
+        _ = cancellable
+    }
 }
