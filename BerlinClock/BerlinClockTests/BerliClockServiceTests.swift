@@ -7,8 +7,9 @@ import Combine
 @Suite("BerlinClockService Tests")
 struct BerlinClockServiceTests {
     
-    @Test("Test emits initial value immediately")
-    func initialEmission() {
+    @Test("timePublisher_emitsInitialValue_immediatelyOnSubscription")
+    func timePublisher_emitsInitialValue_immediatelyOnSubscription() {
+        
         let fixedDate = Date(timeIntervalSince1970: 0)
         let mockTime = MockSystemTimeProvider(date: fixedDate)
         let mockTimer = MockSystemTimePublisher()
@@ -29,10 +30,10 @@ struct BerlinClockServiceTests {
 
         _ = cancellable
     }
-
     
-    @Test("Test emits when timer sends value")
-    func emitsOnTimerSend() {
+    
+    @Test("timePublisher_emitsUpdatedValue_whenTimerPublishes")
+    func timePublisher_emitsUpdatedValue_whenTimerPublishes() {
         
         let calendar = Calendar(identifier: .gregorian)
         
@@ -71,8 +72,10 @@ struct BerlinClockServiceTests {
         _ = cancellable
     }
     
-    @Test("Test handles midnight correctly")
-    func midnightTime() {
+    
+    @Test("timePublisher_emitsMidnightCorrectly_whenCurrentTimeIsMidnight")
+    func timePublisher_emitsMidnightCorrectly_whenCurrentTimeIsMidnight() {
+        
         let calendar = Calendar(identifier: .gregorian)
         
         let midnight = calendar.date(from: DateComponents(
@@ -108,8 +111,10 @@ struct BerlinClockServiceTests {
         _ = cancellable
     }
     
-    @Test("Test updated timeProvider value")
-    func updatedTimeBetweenTicks() {
+    
+    @Test("timePublisher_emitsUpdatedTime_whenTimeProviderChangesBetweenTicks")
+    func timePublisher_emitsUpdatedTime_whenTimeProviderChangesBetweenTicks() {
+        
         let calendar = Calendar(identifier: .gregorian)
         let mockTime = MockSystemTimeProvider(date: Date())
         let mockTimer = MockSystemTimePublisher()

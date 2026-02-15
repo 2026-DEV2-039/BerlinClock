@@ -8,8 +8,7 @@ import Combine
 struct BerlinClockViewModelTests {
     
     @Test("Test initial digitalTimeText is empty")
-    func initialState_isEmpty() {
-        
+    func digitalTimeText_isEmpty_whenInitialState() {
         let mockService = MockBerlinClockService()
         let mockConvertor = MockBerlinLampStateConvertor()
         
@@ -22,7 +21,7 @@ struct BerlinClockViewModelTests {
     }
     
     @Test("Test no update before startClock is called")
-    func noStart_noUpdate() {
+    func digitalTimeText_noUpdate_whenTimeIsNotEmitted() {
         let mockService = MockBerlinClockService()
         let mockConvertor = MockBerlinLampStateConvertor()
         
