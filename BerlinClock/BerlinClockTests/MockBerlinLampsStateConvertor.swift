@@ -4,12 +4,11 @@ import Foundation
 @testable import BerlinClock
 
 final class MockBerlinLampStateConvertor: DigitalTimeToBerlinClockProtocol {
+    var receivedTime = DigitalTime(hours: 0, minutes: 0, seconds: 0)
+    var stubState: BerlinClockState = .empty
     
     func convertDigitalTimeToBerlinClock(_ digitalTime: DigitalTime) -> BerlinClockState {
-        BerlinClockState(secondsLamp: .off,
-                         fiveMinsLamps: Array(repeating: .off, count: 11),
-                         oneMinsLamps: Array(repeating: .off, count: 4),
-                         fiveHoursLamps: Array(repeating: .off, count: 4),
-                         oneHoursLamps: Array(repeating: .off, count: 4))
+        receivedTime = digitalTime
+        return stubState
     }
 }

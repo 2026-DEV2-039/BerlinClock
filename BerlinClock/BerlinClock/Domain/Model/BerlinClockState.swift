@@ -8,3 +8,12 @@ struct BerlinClockState: Equatable, Sendable {
     let oneHoursLamps: [BerlinClockLampsState]
 }
 
+extension BerlinClockState {
+    static let empty = BerlinClockState(
+        secondsLamp: .off,
+        fiveMinsLamps: Array(repeating: .off, count: 11),
+        oneMinsLamps: Array(repeating: .off, count: 4),
+        fiveHoursLamps: Array(repeating: .off, count: 4),
+        oneHoursLamps: Array(repeating: .off, count: 4)
+    )
+}

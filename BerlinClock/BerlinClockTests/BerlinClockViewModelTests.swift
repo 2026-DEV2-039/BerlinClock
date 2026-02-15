@@ -87,4 +87,28 @@ struct BerlinClockViewModelTests {
         
         #expect(viewModel.digitalTimeText == "03:04:05")
     }
+    
+    @Test("Test lampState updates when time is in initial state 0.0.0")
+    func lampState_isEmpty_whenTimeIsNotStarted() {
+        
+        let mockService = MockBerlinClockService()
+        let mockConvertor = MockBerlinLampStateConvertor()
+        
+        let expectedState = BerlinClockState.empty
+        mockConvertor.stubState = expectedState
+        
+        let viewModel = BerlinClockViewModel(
+            clockService: mockService,
+            berlinLampStateConvertor: mockConvertor
+        )
+        
+        viewModel.startClock()
+        
+        let time = DigitalTime(hours: 0, minutes: 0, seconds: 0)
+        
+        mockService.send(time)
+        
+        #expect(viewModel.allLampsState == expectedState)
+        #expect(mockConvertor.receivedTime == time)
+    }
 }
