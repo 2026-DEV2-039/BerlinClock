@@ -64,4 +64,38 @@ struct BerlinClockServiceTests {
         
         _ = cancellable
     }
+    
+    @Test("Test handles midnight correctly")
+    func midnightTime() {
+        let calendar = Calendar(identifier: .gregorian)
+        
+        let midnight = calendar.date(from: DateComponents(
+            year: 2026,
+            month: 1,
+            day: 1,
+            hour: 0,
+            minute: 0,
+            second: 0
+        ))!
+        
+        let mockTime = MockSystemTimeProvider(date: midnight)
+        let mockTimer = MockSystemTimePublisher()
+        
+        let service = BerlinClockService(
+            calendar: calendar,
+            timeProvider: mockTime,
+            timerPublisher: mockTimer
+        )
+        
+        var values: [DigitalTime] = []
+        
+        let cancellable = service.timePublisher
+            .sink { values.append($0) }
+        
+        #expect(values.first?.hours == 0)
+        #expect(values.first?.minutes == 0)
+        #expect(values.first?.seconds == 0)
+        
+        _ = cancellable
+    }
 }
