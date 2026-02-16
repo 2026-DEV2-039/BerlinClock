@@ -175,4 +175,30 @@ struct BerlinClockViewModelTests {
         #expect(viewModel.lampsRows.first?.lamps.first?.isOn == true)
         #expect(viewModel.lampsRows.first?.lamps.first?.lampColor == .yellowColor)
     }
+    
+    @Test("Test startClock multiple calls subscribe only once")
+    func startClock_subscribeOnlyOnce_whenCalledMultipleTimes() {
+        let mockService = MockBerlinClockService()
+        let mockConvertor = MockBerlinLampStateConvertor()
+        let viewModel = BerlinClockViewModel(clockService: mockService, berlinLampStateConvertor: mockConvertor)
+        
+        viewModel.startClock()
+        viewModel.startClock()
+        viewModel.startClock()
+        
+        #expect(mockService.subscriptionCount == 1)
+    }
+    
+    @Test("Test stopClock allows restart")
+    func stopClock_restartedSubcription_whenCalledStartedAgain() {
+        let mockService = MockBerlinClockService()
+        let mockConvertor = MockBerlinLampStateConvertor()
+        let viewModel = BerlinClockViewModel(clockService: mockService, berlinLampStateConvertor: mockConvertor)
+        
+        viewModel.startClock()
+        viewModel.stopClock()
+        viewModel.startClock()
+        
+        #expect(mockService.subscriptionCount == 2)
+    }
 }

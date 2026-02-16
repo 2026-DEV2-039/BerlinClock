@@ -7,9 +7,11 @@ import Combine
 final class MockBerlinClockService: BerlinClockServiceProtocol {
     
     private let subject = PassthroughSubject<DigitalTime, Never>()
-    
+    private(set) var subscriptionCount = 0
+
     var timePublisher: AnyPublisher<DigitalTime, Never> {
-        subject.eraseToAnyPublisher()
+        subscriptionCount += 1
+        return subject.eraseToAnyPublisher()
     }
     
     func send(_ value: DigitalTime) {
