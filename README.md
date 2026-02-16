@@ -7,6 +7,31 @@ Instead of displaying hours, minutes, and seconds as numbers, it visualizes time
 
 This project focuses on **clean logic, testability, and separation of concerns**, rather than UI complexity.
 
+<p align="center">
+  <img src="ClockImage.png" width="220"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/License-MIT-blue.svg" />
+  <img src="https://img.shields.io/badge/Platform-iOS%2017%2B-black" />
+  <img src="https://img.shields.io/badge/Swift-6.0-orange" />
+  <img src="https://img.shields.io/badge/SwiftUI-UI_Framework-green" />
+  <img src="https://img.shields.io/badge/Architecture-MVVM-purple" />
+  <img src="https://img.shields.io/badge/Development-TDD-red" />
+  <img src="https://img.shields.io/badge/Build-GitHub_Actions-blue" />
+  <img src="https://img.shields.io/badge/Coverage-Unit_Tested-success" />
+</p>
+
+---
+
+## 🎬 Live App Preview
+
+<p align="center">
+  <img src="berlin_clock.gif" width="350"/>
+</p>
+
+---
+
 ## 🕰️ Berlin Clock Overview
 
 The Berlin Clock (German: Mengenlehreuhr) is a unique clock design that tells time using illuminated colored lamps instead of traditional hands or digital numbers.
@@ -82,6 +107,12 @@ Legend:
 - Swift Testing framework
 - iOS 17+
 - Xcode 15.0+
+
+## 🏗 Architecture Diagram
+
+<p align="center">
+  <img src="architecture_diagram.svg" width="450"/>
+</p>
 
 ## Getting Started
 
