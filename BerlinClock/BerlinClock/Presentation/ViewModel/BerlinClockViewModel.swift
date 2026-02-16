@@ -29,7 +29,8 @@ final class BerlinClockViewModel: ObservableObject {
     private let berlinLampStateConvertor: DigitalTimeToBerlinClockProtocol
     
     private var cancellables = Set<AnyCancellable>()
-    
+    private var isRunning = false
+
     // MARK: - Init
     init(clockService: BerlinClockServiceProtocol, berlinLampStateConvertor: DigitalTimeToBerlinClockProtocol ) {
         self.clockService = clockService
@@ -38,6 +39,8 @@ final class BerlinClockViewModel: ObservableObject {
     
     // MARK: - Public Binding Trigger
     func startClock() {
+        guard !isRunning else { return }
+        isRunning = true
         clockService.timePublisher
             .sink { [weak self] digitalTime in
                 guard let self = self else { return }
@@ -48,6 +51,7 @@ final class BerlinClockViewModel: ObservableObject {
     
     func stopClock() {
         cancellables.removeAll()
+        isRunning = false
     }
 }
 
