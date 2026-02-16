@@ -4,42 +4,63 @@ struct LampView: View {
     let lamp: BerlinClockLampPresentationModel
     let shape: LampShape
     
-    private let circleSize: CGFloat = 120
-    private let rectangleHeight: CGFloat = 50
-    
     var body: some View {
         Group {
             if shape == .circle {
                 Circle()
-                    .fill(resolveColor())
-                    .frame(width: circleSize, height: circleSize)
-                    .overlay(
-                        Circle()
-                            .stroke(Color.primary.opacity(0.4), lineWidth: 10)
-                    )
-                
+                    .fill(fillColor)
+                    .overlay(circleBorder)
+                    .frame(width: Layout.circleSize,
+                           height: Layout.circleSize)
             } else {
-                
-                Rectangle()
-                    .fill(resolveColor())
-                    .frame(height: rectangleHeight)
-                    .cornerRadius(6)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 6)
-                            .stroke(Color.primary.opacity(0.25), lineWidth: 10)
-                    )
+                RoundedRectangle(cornerRadius: Layout.cornerRadius)
+                    .fill(fillColor)
+                    .overlay(rectangleBorder)
+                    .frame(height: Layout.rectangleHeight)
             }
         }
-        .animation(.easeInOut(duration: 0.2), value: lamp.isOn)
-    }
-    
-    private func resolveColor() -> Color {
-        lamp.isOn
-        ? lamp.lampColor.swiftUIColor
-        : Color.gray.opacity(0.35)
+        .animation(.easeInOut(duration: Layout.animationDuration),
+                   value: lamp.isOn)
     }
 }
 
+// MARK: - Private Helpers
+private extension LampView {
+    var fillColor: Color {
+        lamp.isOn
+        ? lamp.lampColor.swiftUIColor
+        : Layout.offColor
+    }
+    
+    var circleBorder: some View {
+        Circle()
+            .stroke(Layout.borderColor,
+                    lineWidth: Layout.borderWidth)
+    }
+    
+    var rectangleBorder: some View {
+        RoundedRectangle(cornerRadius: Layout.cornerRadius)
+            .stroke(Layout.borderColor,
+                    lineWidth: Layout.borderWidth)
+    }
+}
+
+// MARK: - Layout Constants
+private enum Layout {
+    static let circleSize: CGFloat = 100
+    static let rectangleHeight: CGFloat = 50
+    
+    static let cornerRadius: CGFloat = 6
+    
+    static let borderWidth: CGFloat = 10
+    static let borderColor: Color = Color.primary.opacity(0.3)
+    
+    static let offColor: Color = Color.gray.opacity(0.35)
+    
+    static let animationDuration: Double = 0.2
+}
+
+// MARK: - Color Mapping
 private extension BerlinClockLampColor {
     var swiftUIColor: Color {
         switch self {
@@ -48,69 +69,7 @@ private extension BerlinClockLampColor {
         case .yellowColor:
             return Color(.systemYellow)
         case .noOffColor:
-            return Color.gray.opacity(0.35)
+            return Layout.offColor
         }
     }
-}
-
-
-#Preview("Circle - ON") {
-    LampView(
-        lamp: BerlinClockLampPresentationModel(
-            isOn: true,
-            lampColor: .yellowColor
-        ),
-        shape: .circle
-    )
-    .padding()
-    .background(Color(.systemBackground))
-}
-
-#Preview("Circle - OFF") {
-    LampView(
-        lamp: BerlinClockLampPresentationModel(
-            isOn: false,
-            lampColor: .yellowColor
-        ),
-        shape: .circle
-    )
-    .padding()
-    .background(Color(.systemBackground))
-}
-
-#Preview("Rectangle - ON Red") {
-    LampView(
-        lamp: BerlinClockLampPresentationModel(
-            isOn: true,
-            lampColor: .redColor
-        ),
-        shape: .rectangle
-    )
-    .padding()
-    .background(Color(.systemBackground))
-}
-
-#Preview("Rectangle - OFF") {
-    LampView(
-        lamp: BerlinClockLampPresentationModel(
-            isOn: false,
-            lampColor: .redColor
-        ),
-        shape: .rectangle
-    )
-    .padding()
-    .background(Color(.systemBackground))
-}
-
-#Preview("Dark Mode - Rectangle ON") {
-    LampView(
-        lamp: BerlinClockLampPresentationModel(
-            isOn: true,
-            lampColor: .yellowColor
-        ),
-        shape: .rectangle
-    )
-    .padding()
-    .background(Color(.systemBackground))
-    .preferredColorScheme(.dark)
 }

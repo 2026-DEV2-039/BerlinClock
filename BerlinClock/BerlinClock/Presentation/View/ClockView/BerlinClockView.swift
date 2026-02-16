@@ -8,9 +8,9 @@ struct BerlinClockView: View {
     }
     
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: Layout.rootSpacing) {
             ForEach(viewModel.lampsRows, id: \.type) { row in
-                HStack(spacing: 8) {
+                HStack(spacing: Layout.lampSpacing) {
                     ForEach(row.lamps.indices, id: \.self) { index in
                         LampView(
                             lamp: row.lamps[index],
@@ -18,50 +18,66 @@ struct BerlinClockView: View {
                         )
                     }
                 }
-                .padding(.vertical, row.shape == .circle ? 0 : 8)
-                .padding(.horizontal, row.shape == .circle ? 0 : 16)
+                .padding(.vertical, verticalPadding(for: row))
+                .padding(.horizontal, horizontalPadding(for: row))
                 
-                if row.type != viewModel.lampsRows.last?.type {
-                    verticalSpine
+                if !isLastRow(row) {
+                    rowConnector
                 }
             }
+            
             Text(viewModel.digitalTimeText)
-                .font(.system(size: 28, weight: .bold, design: .monospaced))
-                .padding(.top, 34)
+                .font(.system(size: Layout.digitalFontSize,
+                              weight: .bold,
+                              design: .monospaced))
+                .padding(.top, Layout.digitalTopSpacing)
         }
-        .padding(.horizontal, 16)
+        .padding(.horizontal, Layout.outerHorizontalPadding)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(.systemBackground).ignoresSafeArea())
         .onAppear {
             viewModel.startClock()
         }
     }
-    
-    // MARK: Helpers
-    private var verticalSpine: some View {
-        Rectangle()
-            .fill(Color.primary.opacity(0.3))
-            .frame(width:8, height: 18)
-    }
-    
-    private func resolveColor(for row: BerlinClockRowModel) -> Color {
-        guard let lamp = row.lamps.first else {
-            return Color.gray.opacity(0.3)
-        }
-        
-        return lamp.isOn
-        ? lamp.lampColor.swiftUIColor
-        : Color.gray.opacity(0.3)
-    }
 }
 
-private extension BerlinClockLampColor {
-    var swiftUIColor: Color {
-        switch self {
-        case .redColor: Color(.systemRed)
-        case .yellowColor: Color(.systemYellow)
-        case .noOffColor: Color.gray.opacity(0.3)
-        }
+// MARK: - Layout Constants
+private enum Layout {
+    static let rootSpacing: CGFloat = 0
+    
+    static let lampSpacing: CGFloat = 8
+    
+    static let outerHorizontalPadding: CGFloat = 16
+    
+    static let rowVerticalPadding: CGFloat = 8
+    static let rowHorizontalPadding: CGFloat = 16
+    
+    static let digitalTopSpacing: CGFloat = 34
+    static let digitalFontSize: CGFloat = 28
+    
+    static let connectorWidth: CGFloat = 8
+    static let connectorHeight: CGFloat = 18
+}
+
+// MARK: - Helpers
+private extension BerlinClockView {
+    var rowConnector: some View {
+        Rectangle()
+            .fill(Color.primary.opacity(0.3))
+            .frame(width: Layout.connectorWidth,
+                   height: Layout.connectorHeight)
+    }
+    
+    func verticalPadding(for row: BerlinClockRowModel) -> CGFloat {
+        row.shape == .circle ? 0 : Layout.rowVerticalPadding
+    }
+    
+    func horizontalPadding(for row: BerlinClockRowModel) -> CGFloat {
+        row.shape == .circle ? 0 : Layout.rowHorizontalPadding
+    }
+    
+    func isLastRow(_ row: BerlinClockRowModel) -> Bool {
+        row.type == viewModel.lampsRows.last?.type
     }
 }
 
