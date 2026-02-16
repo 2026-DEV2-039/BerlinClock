@@ -45,6 +45,10 @@ final class BerlinClockViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
+    
+    func stopClock() {
+        cancellables.removeAll()
+    }
 }
 
 //MARK: Presentation Methods

@@ -38,6 +38,9 @@ struct BerlinClockView: View {
         .onAppear {
             viewModel.startClock()
         }
+        .onDisappear {
+            viewModel.stopClock()
+        }
     }
 }
 

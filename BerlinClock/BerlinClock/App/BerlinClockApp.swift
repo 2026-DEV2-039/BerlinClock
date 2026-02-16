@@ -20,9 +20,9 @@ private extension BerlinClockApp {
                                               timeProvider: timeProvider,
                                               timerPublisher: timePublisher)
         
-        let berlincRowStateConvertor = BerlinClockRowCalculator()
+        let berlinRowStateConvertor = BerlinClockRowCalculator()
     
         return BerlinClockViewModel(clockService: clockService,
-                                    berlinLampStateConvertor: berlincRowStateConvertor)
+                                    berlinLampStateConvertor: berlinRowStateConvertor)
     }
 }
