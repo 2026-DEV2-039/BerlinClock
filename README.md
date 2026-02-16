@@ -8,13 +8,13 @@ Instead of displaying hours, minutes, and seconds as numbers, it visualizes time
 This project focuses on **clean logic, testability, and separation of concerns**, rather than UI complexity.
 
 <p align="center">
-  <img src="ClockImage.png" width="220"/>
+  <img width="320" height="320" alt="clockImage" src="https://github.com/user-attachments/assets/f9055f70-feb5-4e73-be17-cce513063e7d" />
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" />
   <img src="https://img.shields.io/badge/Platform-iOS%2017%2B-black" />
-  <img src="https://img.shields.io/badge/Swift-6.0-orange" />
+  <img src="https://img.shields.io/badge/Swift-5%2B-orange" />
   <img src="https://img.shields.io/badge/SwiftUI-UI_Framework-green" />
   <img src="https://img.shields.io/badge/Architecture-MVVM-purple" />
   <img src="https://img.shields.io/badge/Development-TDD-red" />
@@ -23,14 +23,13 @@ This project focuses on **clean logic, testability, and separation of concerns**
 </p>
 
 ---
-
 ## 🎬 Live App Preview
 
 <p align="center">
-  <img src="berlin_clock.gif" width="350"/>
+  <img src="https://github.com/user-attachments/assets/fb3ef42a-7c81-495e-ba04-ea997b608537" width="320" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://github.com/user-attachments/assets/2c5ee708-f869-4b97-8bc3-8b34ab339959" width="320" />
 </p>
-
----
 
 ## 🕰️ Berlin Clock Overview
 
@@ -102,17 +101,14 @@ Legend:
 
 ## Tech Stack
 
-- Swift 5
+- Swift 5.0+
 - SwiftUI
 - Swift Testing framework
 - iOS 17+
 - Xcode 15.0+
 
 ## 🏗 Architecture Diagram
-
-<p align="center">
-  <img src="architecture_diagram.svg" width="450"/>
-</p>
+<img width="1210" height="533" alt="Screenshot 2026-02-16 at 16 36 15" src="https://github.com/user-attachments/assets/951bf821-2a21-4680-bb68-ae39d23bbfb9" />
 
 ## Getting Started
 
