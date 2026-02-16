@@ -27,9 +27,7 @@ struct LampView: View {
 // MARK: - Private Helpers
 private extension LampView {
     var fillColor: Color {
-        lamp.isOn
-        ? lamp.lampColor.swiftUIColor
-        : Layout.offColor
+        lamp.lampColor.swiftUIColor
     }
     
     var circleBorder: some View {
@@ -47,7 +45,7 @@ private extension LampView {
 
 // MARK: - Layout Constants
 private enum Layout {
-    static let circleSize: CGFloat = 100
+    static let circleSize: CGFloat = 80
     static let rectangleHeight: CGFloat = 50
     
     static let cornerRadius: CGFloat = 6
